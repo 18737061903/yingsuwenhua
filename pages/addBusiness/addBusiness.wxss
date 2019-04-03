@@ -1,0 +1,35 @@
+/* pages/addBusiness/addBusiness.wxss */
+.page{
+    padding: 0rpx 20rpx
+}
+.mian{
+    width: 100%;
+}
+.name{
+    display: inline-block;
+    width: 100%;
+    height: 50rpx;
+    font-size: 28rpx;
+}
+.nameInput{
+    width: 200rpx;
+    height: 50rpx;
+    background: #ccc
+}
+.imgtext{
+    font-size: 28rpx;
+}
+.clickimg{
+   display: inline-block;
+   font-size: 28rpx;
+   color: red;
+   margin-left:20rpx 
+}
+.img{
+    display: block;
+    width: 100rpx;
+    height: 100rpx;
+    background: #ccc;
+}.picker{
+    font-size: 28rpx;
+}

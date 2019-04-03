@@ -1,0 +1,128 @@
+/* pages/business/business.wxss */
+.page{
+    background: #f4f4f4;
+    clear: both;
+    height: 100vh;
+
+}
+.main_left{
+    width: 122rpx;
+    background: #fff;
+    float: left;
+    height: 100vh;
+}
+.main_text{
+    width: 122rpx;
+    height: 112rpx;
+    text-align: center;
+    line-height: 112rpx;
+}
+.main_text text{
+    display: inline-block;
+    width: 122rpx;
+    height: 82rpx;
+    font-size: 26rpx;
+    text-align: center;
+    line-height: 82rpx;
+}
+.activis{
+ border-left:  6rpx solid #ffc001;
+ color: #ffc001;
+}
+.acviewtiv{
+    background: #f4f4f4;
+}
+.main_right{
+    width: 628rpx;
+    height: 100%;
+    float: right;
+    background: #f4f4f4;
+}
+.banner{
+    width: 568rpx;
+    height: 200rpx;
+    margin: 0 auto;
+}
+.banner image{
+    width: 568rpx;
+    height: 200rpx;
+    border-radius: 6rpx;
+}
+.main_right-text{
+    width: 100%;
+    display: inline-block;
+    height:97rpx;
+    text-align: center;
+    line-height: 97rpx;
+    font-size: 36rpx;
+}
+.right_list{
+    width: 628rpx;
+    height: auto;
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+}
+.list{
+    margin-right:8rpx; 
+    width: 265rpx;
+    height: 292rpx;
+    background:#fff;
+    border-radius: 6rpx;
+    margin-left: 30rpx;
+    margin-bottom: 30rpx; 
+}
+.list_up{
+    width: 265rpx;
+    height: 200rpx;
+}
+.list_up image{
+    width: 100%;
+    height: 100%;
+    border-radius: 6rpx;
+    background: red
+}
+.list_dow{
+    width: 100%;
+    height: 92rpx;
+    padding: 10rpx 10rpx;
+    box-sizing: border-box;
+}
+.list_dow text:first-child{
+    display: block;
+    font-size: 20rpx;
+}
+.list_dow text:last-child{
+    margin-top: 10rpx;
+    display:block;
+    font-size: 20rpx;
+    color: red
+}
+.list_dow  image{
+    width: 20rpx;
+    height: 5rpx;
+}
+.mincate{
+    width: 100%;
+    height: 50rpx;
+    margin-bottom: 20rpx
+}
+.mincate text:first-child{
+    margin-left:30rpx; 
+}
+.mincate text:last-child{
+    border: none 
+}
+.mincate text{
+    display: inline-block;
+    padding: 0rpx 20rpx;
+    text-align: center;
+    border-right:3rpx #888 solid; 
+    font-size:26rpx; 
+   
+}
+/* 隐藏下啦条 */
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}

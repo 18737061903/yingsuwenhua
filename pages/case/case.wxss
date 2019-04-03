@@ -1,0 +1,112 @@
+/* pages/business/business.wxss */
+.page{
+    background: #f4f4f4;
+    clear: both;
+    height: 100vh;
+
+}
+.nav{
+    height:90rpx;
+    white-space:nowrap;
+    position: fixed;
+    top: 0rpx;
+    z-index: 99;
+    background: #FFF;
+    line-height: 90rpx;
+    box-shadow: 0rpx 5rpx  5rpx rgba(0, 0, 0, 0.3);
+}
+.navtext{
+    margin-left:20rpx;
+     height: 40rpx;
+      box-sizing:border-box; 
+      line-height: 40rpx;
+      text-align: center;
+      padding: 0rpx 20rpx;
+      display: inline-block;  
+      font-size:28rpx;
+      font-family:PingFangSC-Regular;
+      font-weight:400;
+      color:rgba(102,102,102,1);
+}
+.activis{
+ border-bottom:  6rpx solid #ffc001;
+ color: #ffc001;
+ padding-bottom: 4rpx;
+}
+
+.main_right{
+    width: 750rpx;
+    height: 100%;
+    background: #f4f4f4;
+    padding:106rpx 0rpx 0rpx 0rpx 
+}
+.banner{
+    width: 750rpx;
+    height: 250rpx;
+    margin: 0 auto;
+}
+.banner image{
+    width: 100%;
+    height: 100%;
+    background: red;
+    border-radius: 6rpx;
+}
+.main_right-text{
+    width: 100%;
+    display: inline-block;
+    height:97rpx;
+    text-align: center;
+    line-height: 97rpx;
+    font-size: 28rpx;
+}
+.right_list{
+    width: rpx;
+    height: auto;
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+    padding: 0rpx 20rpx;
+}
+.list{
+    margin-right:8rpx; 
+    width: 215rpx;
+    height: 292rpx;
+    background:#fff;
+    border-radius: 6rpx;
+    margin-left: 10rpx;
+    margin-bottom: 30rpx; 
+}
+.list_up{
+    width: 215rpx;
+    height: 200rpx;
+}
+.list_up image{
+    width: 100%;
+    height: 100%;
+    border-radius: 6rpx;
+    background: red
+}
+.list_dow{
+    width: 100%;
+    height: 92rpx;
+    padding: 10rpx 10rpx;
+    box-sizing: border-box;
+}
+.list_dow text:first-child{
+    display: block;
+    font-size: 20rpx;
+}
+.list_dow text:last-child{
+    margin-top: 10rpx;
+    display:block;
+    font-size: 20rpx;
+    color: red
+}
+.list_dow  image{
+    width: 20rpx;
+    height: 5rpx;
+}
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}

@@ -36,7 +36,7 @@ Page({
                 wx.setStorageSync("res", res);
                 console.log("登陆成功")
                 wx.redirectTo({
-                    url: "../home/home"
+                    url: "../addHome/addHome"
                 })
             },
             fail: (code, msg) => {

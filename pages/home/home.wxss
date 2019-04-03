@@ -1,0 +1,144 @@
+/* pages/home/home.wxss */
+.page{
+    background: #f4f4f4;
+    padding-bottom: 120rpx;
+    
+}
+.swiper_box {
+  height: auto;
+  position: relative;
+}
+.swipers {
+  height: 380rpx;
+}
+.swiper_box image {
+  width: 100%;
+  height: 100%;
+  border-radius: 6rpx;
+}
+/*用来包裹所有的小圆点  */
+.dots {
+  height: 70rpx;
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  right: 20rpx;
+  bottom: 10rpx;
+
+}
+/*未选中时的小圆点样式 */
+.dot {
+  width: 10rpx;
+  height: 45rpx;
+  border-radius: 20rpx;
+  margin-right: 30rpx;
+  background-color: #f4f4f4;
+  transform: rotate(25deg);
+}
+/*选中以后的小圆点样式  */
+.active {
+  width: 10rpx;
+  height: 45rpx;
+  border-radius: 20rpx;
+  background-color: #cccccc;
+  transform: rotate(25deg);
+}
+.cate{
+    margin-top: 20rpx;
+    width: 100%;
+    background: #fff;
+    padding: 35rpx 0rpx;
+    box-sizing: border-box;
+}
+.cate_main{
+  display: flex;
+  justify-content:left ;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.cate_child{
+ width: 134rpx;
+ height: 190rpx;
+ text-align: center;
+ margin:20rpx 55rpx;
+
+}
+.cate_child image{
+  width: 134rpx;
+  height: 144rpx;
+  border-radius: 6rpx;
+}
+.cate_child text{
+    font-size: 26rpx;
+    color: rgb(51, 51, 51)
+}
+.caselist{
+    margin: 20rpx 0rpx;
+    width: 100%;
+    height: 106rpx;
+    background: #fff;
+    text-align: center;
+    line-height: 106rpx;
+}
+.caselist text{
+ font-size: 28rpx;
+}
+.case{
+    width: 100%;
+    padding: 20rpx 30rpx;
+    box-sizing: border-box;
+}
+.case_main{
+    width: 100%;
+    height: 230rpx;
+    background: #fff;
+    border-radius: 6rpx;
+    box-shadow: 0rpx 8rpx  8rpx rgba(0, 0, 0, 0.3);
+    padding: 19rpx 42rpx 19rpx 19rpx;
+    box-sizing: border-box;
+    clear: both;
+}
+.case_img{
+    width: 192rpx;
+    height: 192rpx;
+    float: left;
+}
+.case_img image{
+    width: 100%;
+    height: 100%;
+    background: red;
+    border-radius: 6rpx;
+}
+.case_text{
+    float: right;
+    width:406rpx;
+    height: 192rpx 
+}
+.case_text text:first-child{
+    display: inline-block;
+    font-size: 30rpx;
+    color: rgb(51, 51, 51);
+    margin-bottom: 20rpx;
+    margin-left: 30rpx;
+    position: relative
+}
+.case_text text:first-child::before {
+				content: '';
+				position: absolute;
+				left: -30rpx;
+				top: 15rpx;
+				width: 15rpx;
+                height: 15rpx;
+                background: #ffc001;
+			}
+.case_text text:last-child{
+    display: inline-block;
+    font-size: 24rpx;
+    line-height:40rpx;
+    color: rgb(102, 102,102);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}

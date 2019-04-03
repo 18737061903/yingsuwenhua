@@ -1,0 +1,26 @@
+<!--pages/addHome/addHome.wxml-->
+<view class='delete_add' >
+  <text bindtap='delete'>删除轮播图</text>
+  <text bindtap='add'>添加轮播图</text>
+</view>
+<view wx:if="{{!isEditImg}}">
+ <!-- <picker bindchange="bindPickerChange" value="{{index}}" range="{{multiArray}}" range-key="name">
+    <view class="picker">
+      当前选择：{{multiname}}
+    </view>
+  </picker>
+    -->
+<button type='primary' bindtap='choose'>选择照片</button>
+<button bindtap='btntrue'>确定</button>
+    <view class='banner'wx:for="{{imgs}}" wx:key>
+       <image  src='{{https+item.url}}'  lazy-load  data-index='{{index}}'></image>
+       <text bindtap='clickBnaer' data-index='{{index}}'>删除</text>
+    </view>
+</view>
+<view >
+    <view wx:for="{{imgs}}"  wx:key wx:if="{{isEditImg==true}}">
+        <image  src='{{https+item.url}}'  lazy-load  data-index='{{index}}'></image>
+        <text bindtap='imgsDelete' data-index='{{index}}'>删除</text>
+    </view>
+</view>
+

@@ -1,5 +1,5 @@
 const app = getApp();
-const http = "https://118.190.155.34/";
+const http = "https://www.yingsu.shop/";
 //接口请求
 const request = (item) => {
     if (item.showLoading) {
@@ -8,13 +8,13 @@ const request = (item) => {
             mask: true
         })
     }
-    // let user = wx.getStorageSync("res");
+    let user = wx.getStorageSync("res");
     let header = {
         'Content-Type': 'application/x-www-form-urlencoded'
     };
-    // if (user) {
-    //     header.token = user.token;
-    // }
+    if (user) {
+        header.token = user.token;
+    }
     wx.request({
         url: http + item.url,
         data: item.data,

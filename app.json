@@ -1,11 +1,48 @@
 {
   "pages":[
-    "pages/wxlogin/wxlogin"
+    "pages/home/home",
+    "pages/business/business",
+    "pages/case/case",
+    "pages/contact/contact",
+    "pages/wxlogin/wxlogin",
+    "pages/addbanner/addbanner",
+    "pages/addBusiness/addBusiness"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+"window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
-  }
+    "navigationBarTitleText": "鹰苏文化",
+    "navigationBarTextStyle": "black"
+},
+  "tabBar": {
+    "color": "#666",
+    "selectedColor": "#ffc001",
+    "backgroundColor": "#fafafa",
+    "list": [
+        {
+            "pagePath": "pages/home/home",
+            "text": "首页",
+            "iconPath": "img/tabBar/index.png",
+            "selectedIconPath": "img/tabBar/sindex.png"
+        },
+        {
+            "pagePath": "pages/business/business",
+            "text": "业务",
+            "iconPath": "img/tabBar/business.png",
+            "selectedIconPath": "img/tabBar/sbusiness.png"
+        },
+        {
+            "pagePath": "pages/case/case",
+            "text": "案例",
+            "iconPath":"img/tabBar/case.png",
+            "selectedIconPath": "img/tabBar/scase.png"
+        },
+        {
+            "pagePath": "pages/contact/contact",
+            "text": "联系我们",
+            "iconPath": "img/tabBar/contact.png",
+            "selectedIconPath": "img/tabBar/scontact.png"
+        }
+    ]
+ }
 }
