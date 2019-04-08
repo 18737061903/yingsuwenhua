@@ -29,14 +29,13 @@
   </view>
   <!-- list -->
   <view class='case'>
-    <view class='case_main'>
+    <view class='case_main' wx:for="{{caseList}}" wx:key>
       <view class='case_img'>
-        <image src=''></image>
+        <image src='{{https+item.url}}'></image>
       </view> 
       <view class='case_text'>
-        <text>京东到家app推广</text>
-        <text>我们为客户提供方案我们为客户提供方案我们为客户提供方案我们为客户提供方案我们为客户提供方案
-        我们为客户提供方案我们为客户提供方案我们为客户提供方案我们为客户提供方案我们为客户提供方案</text>
+        <text>{{item.title}}</text>
+        <text>{{item.desc}}</text>
       </view> 
     </view>
   </view>

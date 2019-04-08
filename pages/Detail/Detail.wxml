@@ -1,0 +1,30 @@
+<!--pages/Detail/Detail.wxml-->
+<view class='page'>
+   <view class='toptext'><text>视频</text> <text>查看更多</text> </view>
+   <view class='videos'><video src='{{https+detailList.firstVideoUrl}}' controls='true' loop="true" show-fullscreen-btn="true" object-fit='contain' poster="{{https+detailList.firstVideoUrl}}?spm=a2c4g.11186623.2.1.yjOb8V&x-oss-process=video/snapshot,t_7000,f_jpg,w_800,h_600,m_fast"></video> </view>
+   <view class='desc'>
+     <text>开始啊卡斯和</text>
+     <text>开始啊卡斯和</text>
+     <text>开始啊卡斯和</text>
+   </view>
+   <view class='title'>
+      <text>— 活动内容 —</text> 
+    </view>
+    <view class='img' wx:for="{{detailList.imgs}}" wx:key>
+      <image src='{{https+item.url}}' lazy-load></image>
+    </view>
+    <view class='footer'>
+      <view class='footer-child'>
+        <image src='../../img/img/yh.png'></image><text>特价优惠:￥6200/场次</text>
+      </view>
+       <view class='footer-child'>
+        <image src='../../img/img/yh.png'></image><text>服务时间:全天</text>
+      </view>
+       <view class='footer-child'>
+        <image src='../../img/img/yh.png'></image><text>联系方式:187740720</text>
+      </view>
+       <view class='footer-child'>
+        <image src='../../img/img/yh.png'></image><text>邮箱:liwenpeng@163.com</text>
+      </view>
+    </view>
+</view>

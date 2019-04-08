@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 4,
 			"list": [
 				{
 					"id": 0,
@@ -58,6 +58,19 @@
 					"name": "addBusiness",
 					"pathName": "pages/addBusiness/addBusiness",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "addDetail",
+					"pathName": "pages/addDetail/addDetail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "Detail",
+					"pathName": "pages/Detail/Detail",
 					"scene": null
 				}
 			]

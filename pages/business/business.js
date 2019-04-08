@@ -6,15 +6,16 @@ Page({
      * 页面的初始数据
      */
     data: {
-      https: 'https://yingsuwenhua.oss-cn-shanghai.aliyuncs.com/',
+        https: 'https://yingsuwenhua.oss-cn-shanghai.aliyuncs.com/',
       banner:'',//右边大图
       text:[
 
       ],
       acindex:0,
     cateList:[],
-        cateId:5,
-        isTitle:false
+        cateId: 5,
+        isTitle:false,
+        articleList:[],
     },
 
     /**
@@ -62,6 +63,11 @@ Page({
                 cateId: that.data.cateId,
             },
             success(res) {
+                if (res.articleList){
+                    that.setData({
+                        articleList: res.articleList
+                    })
+                }
                 if (res.cateList){
                     that.setData({
                         cateList: res.cateList
@@ -134,5 +140,18 @@ Page({
             cateId: this.data.cateList[index].id
         })
         that.rightData()
+    },
+    //长按添加
+    longTap(e){
+        console.log(e.target.dataset.id)
+        wx.navigateTo({
+            url: '../addDetail/addDetail?id='+e.target.dataset.id,
+        })
+    },
+    //跳转详情
+    binNivo(e){
+        wx.navigateTo({
+            url: '../Detail/Detail?id='+e.target.dataset.id,
+        })
     }
 })

@@ -9,7 +9,8 @@ Page({
         bannerList:[
         ],
         currentSwiper: 0,
-        cateList:[]
+        cateList:[],
+        caseList:[]
     },
 
     /**
@@ -42,14 +43,6 @@ Page({
                 pid:0
             },
             success(res) {
-                // let cateList = res.cateList
-               
-                // cateList.forEach((item,index)=>{
-                //     if(item.pid!=0){
-                //         console.log(cateList[index])
-                //         cateList.splice(index,1)
-                //     }
-                // })
                 that.setData({
                     bannerList: res.bannerList,
                     cateList: res.cateList
@@ -64,6 +57,9 @@ Page({
                 row:3
             },
             success(res) {
+                that.setData({
+                    caseList:res
+                })
             }
         })
         

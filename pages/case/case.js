@@ -1,37 +1,20 @@
 // pages/business/business.js
+const app = getApp()
+const sun = require('../../utils/sun.js')
 Page({
-
     /**
      * 页面的初始数据
      */
     data: {
+        https: 'https://yingsuwenhua.oss-cn-shanghai.aliyuncs.com/',
+        banner: '',//右边大图
         text: [
-            "礼仪",
-            "礼仪",
-            "礼仪",
-            "礼仪",
-            "礼仪",
-            "礼仪",
-            "礼仪",
-            "礼仪",
-            "礼仪",
-            "礼仪",
-            "礼仪",
-            "礼仪",
-            "礼仪",
-            "礼仪",
-            "礼仪",
-            "礼仪",
-            "礼仪",
-            "礼仪",
-            "礼仪",
-            "礼仪",
-            "礼仪",
-            "礼仪",
-            "礼仪",
-            "礼仪",
+
         ],
-        acindex: '0'
+        acindex: 0,
+        cateList: [],
+        cateId: 5,
+        isTitle: false
     },
 
     /**
@@ -52,7 +35,50 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+        let that = this;
+        //请求案例列表
+        sun.request({
+            url: "cate/lst",
+            showLoading: true,
+            data: {
+                pid: 0
+            },
+            success(res) {
+                that.setData({
+                    text: res,
+                    banner: res[that.data.acindex].banner
+                })
+            }
+        })
+        that.rightData()
+    },
+    rightData() {
+        let that = this
+        //右边列表
+        sun.request({
+            url: "articles/lst",
+            showLoading: true,
+            data: {
+                cateId: that.data.cateId,
+            },
+            success(res) {
+                if (res.cateList) {
+                    that.setData({
+                        cateList: res.cateList
+                    })
+                    if (res.cateList.length >= 2) {
+                        that.setData({
+                            isTitle: true
+                        })
+                    } else if (res.cateList.length <= 1) {
+                        that.setData({
+                            isTitle: false
+                        })
+                    }
+                }
 
+            }
+        })
     },
 
     /**
@@ -91,9 +117,22 @@ Page({
     },
     //选中分类
     selcetCate(e) {
+        let that = this
         let index = e.target.dataset.index;
         this.setData({
-            acindex: index
+            acindex: index,
+            banner: this.data.text[index].banner,
+            cateId: this.data.text[index].id
         })
+        that.rightData()
+    },
+    //二级分类赛选
+    minCate(e) {
+        let that = this;
+        let index = e.target.dataset.index;
+        this.setData({
+            cateId: this.data.cateList[index].id
+        })
+        that.rightData()
     }
 })

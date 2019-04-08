@@ -2,13 +2,16 @@
 <view class='page' >
 <scroll-view scroll-x class='nav' >
       <view wx:for="{{text}}" class='navtext'wx:key bindtap='selcetCate'
-      data-index='{{index}}'><text class='{{acindex==index?"activis":""}}' data-index='{{index}}'>{{item}}</text></view>
+      data-index='{{index}}'><text class='{{acindex==index?"activis":""}}' data-index='{{index}}'>{{item.name}}</text></view>
 </scroll-view>
   <scroll-view scroll-y="true" class='main_right'>
     <view class='banner'>
       <image src=''></image>
     </view>
-    <text class='main_right-text'>活动主持</text>
+    <text class='main_right-text' wx:if="{{!isTitle}}">——— {{cateList[0].name}} ———</text>
+    <view class='mincate' wx:if="{{isTitle}}">
+      <text wx:for="{{cateList}}" wx:key bindtap='minCate' data-index='{{index}}'>{{item.name}}</text>
+    </view>
     <view class='right_list'>
         <view class='list'>
          <view class='list_up'> <image src=''></image></view>

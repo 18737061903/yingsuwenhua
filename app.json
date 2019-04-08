@@ -6,7 +6,9 @@
     "pages/contact/contact",
     "pages/wxlogin/wxlogin",
     "pages/addbanner/addbanner",
-    "pages/addBusiness/addBusiness"
+    "pages/addBusiness/addBusiness",
+    "pages/addDetail/addDetail",
+    "pages/Detail/Detail"
   ],
 "window": {
     "backgroundTextStyle": "light",

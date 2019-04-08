@@ -1,1 +1,17 @@
 /* pages/contact/contact.wxss */
+.page{
+    padding: 20rpx 20rpx
+}
+.text{
+   font-size: 32rpx;
+   text-indent: 2em;
+   text-align: left;
+   line-height: 50rpx
+}
+.contactText {
+    margin-top:120rpx;
+}
+.contactText text{
+  display: block;
+  font-size: 32rpx;
+}
