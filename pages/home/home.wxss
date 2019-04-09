@@ -97,6 +97,7 @@
     padding: 19rpx 42rpx 19rpx 19rpx;
     box-sizing: border-box;
     clear: both;
+    margin-bottom: 19rpx;
 }
 .case_img{
     width: 192rpx;

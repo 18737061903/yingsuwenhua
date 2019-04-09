@@ -1,24 +1,33 @@
-// pages/Detail/Detail.js
+// pages/video/video.js
 const sun = require('../../utils/sun.js')
 Page({
-
     /**
      * 页面的初始数据
      */
     data: {
         https: 'https://yingsuwenhua.oss-cn-shanghai.aliyuncs.com/',
-      id:'',
-      detailList:[],
+        videoList:[]
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        this.setData({
-            id:options.id
+        console.log(options)
+        //请求
+        let that = this
+        sun.request({
+            url: "articles/detailVideoList",
+            data: {
+                id: options.id
+            },
+            success(res) {
+                that.setData({
+                    videoList: res
+                })
+                console.log(that.data.videoList)
+            }
         })
-
     },
 
     /**
@@ -32,20 +41,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        //请求
-        let that=this
-        sun.request({
-            url: "articles/detail",
-            data: {
-                id:that.data.id
-            },
-            success(res) {
-                
-                that.setData({
-                    detailList:res
-                })
-            }
-        })
+
     },
 
     /**
@@ -82,8 +78,8 @@ Page({
     onShareAppMessage: function () {
 
     },
-    //删除图片
-    deleterImg(e){
+    //删除
+    deleterVideo(e){
         let that = this;
         let id = e.target.dataset.id
         wx.showModal({
@@ -102,29 +98,6 @@ Page({
                             that.onShow()
                         }
                     })
-                } else if (res.cancel) {
-                    // console.log('用户点击取消')
-                }
-            }
-        })
-    },
-    //查看更多
-    moreVideo(){
-        wx.navigateTo({
-            url: '../video/video?id='+this.data.id,
-        })
-    },
-    //编辑详情
-    editDetail(){
-        let that = this;
-        wx.showModal({
-            title: '温馨提示',
-            content: '确定要编辑该条信息吗？',
-            success: function (res) {
-                if (res.confirm) {
-                   wx.navigateTo({
-                       url: '../editDetail/editDetail?id=' + that.data.id,
-                   })
                 } else if (res.cancel) {
                     // console.log('用户点击取消')
                 }

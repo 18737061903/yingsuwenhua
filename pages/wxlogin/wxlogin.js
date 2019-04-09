@@ -34,15 +34,12 @@ Page({
             },
             success: res => {
                 wx.setStorageSync("res", res);
-                console.log("登陆成功")
-                wx.redirectTo({
-                    url: "../addHome/addHome"
+                // console.log("登陆成功")
+                wx.switchTab({
+                    url: "../home/home"
                 })
             },
             fail: (code, msg) => {
-                wx.redirectTo({
-                    url: '../binding/binding',
-                })
             }
         })
     },

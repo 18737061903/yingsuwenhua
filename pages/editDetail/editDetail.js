@@ -6,29 +6,29 @@ Page({
      * 页面的初始数据
      */
     data: {
-        aa:'',
-        https:'https://www.yingsu.shop/',
-        title:"",//标题
-        desc:"",//描述
-        minDesc:"",//小描述
-        money:'',//金额
-        isIndex:[
-            { name: '是', value: 1, checked: 'true'},
-            { name: '否', value: 0},
+        aa: '',
+        https: 'https://www.yingsu.shop/',
+        title: "",//标题
+        desc: "",//描述
+        minDesc: "",//小描述
+        money: '',//金额
+        isIndex: [
+            { name: '是', value: 1, checked: 'true' },
+            { name: '否', value: 0 },
         ],//是否显示为首页案例
         isType: [
             { name: '业务', value: 1, checked: 'true' },
             { name: '案例', value: 2 },
         ],
-        type:"1",
-        isInde:'1',
-        cateId:"",//分类id
-        imgs:[],
-        img:[],
-        videos:[],
-        video:[],
-        imgSort:'10',
-        videoSort:'10',
+        type: "1",
+        isInde: '1',
+        cateId: "",//分类id
+        imgs: [],
+        img: [],
+        videos: [],
+        video: [],
+        imgSort: '10',
+        videoSort: '10',
     },
     radioChange(e) {
         this.setData({
@@ -45,9 +45,9 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-      this.setData({
-          cateId:options.id
-      })
+        this.setData({
+            cateId: options.id
+        })
     },
 
     /**
@@ -144,8 +144,8 @@ Page({
                     },
                     success: function (res) {
                         that.data.video.push(
-                            { url: JSON.parse(res.data).data.imgUrl, sort: that.data.videoSort}
-                            )
+                            { url: JSON.parse(res.data).data.imgUrl, sort: that.data.videoSort }
+                        )
                         that.setData({
                             videos: that.data.video
                         })
@@ -155,9 +155,9 @@ Page({
         })
     },
     //图片排序
-    imgSort(e){
+    imgSort(e) {
         this.setData({
-           imgSort:e.detail.value
+            imgSort: e.detail.value
         })
     },
     //视频排序
@@ -172,7 +172,7 @@ Page({
             title: e.detail.value
         })
     },
-   desc(e) {
+    desc(e) {
         this.setData({
             desc: e.detail.value
         })
@@ -188,19 +188,19 @@ Page({
         })
     },
     //确认提交
-    butn(){
+    butn() {
         sun.request({
             url: "articles/add",
             data: {
                 cateId: this.data.cateId,
-                title:this.data.title,
-                desc:this.data.desc,
-                minDesc:this.data.minDesc,
-                money:this.data.money,
-                isIndex:this.data.isInde,
-                type:this.data.type,
-                imgs:JSON.stringify(this.data.imgs),
-                videos:JSON.stringify(this.data.videos)
+                title: this.data.title,
+                desc: this.data.desc,
+                minDesc: this.data.minDesc,
+                money: this.data.money,
+                isIndex: this.data.isInde,
+                type: this.data.type,
+                imgs: JSON.stringify(this.data.imgs),
+                videos: JSON.stringify(this.data.videos)
             },
             success(res) {
                 wx.showToast({

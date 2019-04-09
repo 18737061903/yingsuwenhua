@@ -13,10 +13,12 @@
 // / articles / add    添加详情  title(详情标题)desc(详情描述)minDesc(小描述)money(金钱) isIndex(是否显示为首页 所属分类为案例时才有)cateId(分类Id)imgs（图片合集） videos（视频合集）
 // /articles/edit		修改详情（只有 标题、描述、小描述、金钱、是否显示首页可 以修改）
 // title(详情标题)desc(详情描述)minDesc(小描述)money(金钱) isIndex(是否显示为首页 所属分类为案例时才有)cateId(分类Id)
-// / articles / del		删除详情  id(详情id)
+// / articles/del	删除详情  id(详情id)
+// articles/detailVideoList  详情点击 传id
 // 3、案例
-// / cate / lst		左边的分类列表	type（1、业务 2、案例）
+// / cate/lst	左边的分类列表	type（1、业务 2、案例）
 // 其他和业务接口一样
 // 4、文件
+// Articles / addFile  详情id
 // files / upload   上传文件(图片视频都可以)
-// files / del     删除详情的文件（图片or视频）  id(文件的id)
+// files/del删除详情的文件（图片or视频）  id(文件的id)

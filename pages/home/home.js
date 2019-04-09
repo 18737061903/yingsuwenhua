@@ -17,7 +17,11 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        if (!wx.getStorageSync("res")){
+            wx.navigateTo({
+                url: "../wxlogin/wxlogin",
+            })
+        }
     },
     swiperChange: function (e) {
         this.setData({
@@ -105,12 +109,65 @@ Page({
         let id = e.target.dataset.id
         wx.showModal({
             title: '温馨提示',
-            content: '确定要删除该分类吗？',
+            content: '确定要编辑该分类吗？',
+            success: function (res) {
+                if (res.confirm) {
+                    wx.navigateTo({
+                        url: '../editClass/editClass?id='+id,
+                    })
+    
+                } else if (res.cancel) {
+                    // console.log('用户点击取消')
+                }
+            }
+        })
+    },
+    //跳入业务列表
+    navoBusiness(e){
+        app.globalData.id = e.target.dataset.id
+     wx.switchTab({
+         url: '../business/business',
+     })
+    },
+   //编辑轮播图片
+    binBanner(){
+        wx.showModal({
+            title: '温馨提示',
+            content: '确定要编辑轮播图吗？',
+            success: function (res) {
+                if (res.confirm) {
+                    wx.navigateTo({
+                        url: '../addbanner/addbanner',
+                    })
+                } else if (res.cancel) {
+                    // console.log('用户点击取消')
+                }
+            }
+        })
+       
+    },
+    //跳入详情页
+    navoDtail(e){
+        let id=e.target.dataset.id;
+        wx.navigateTo({
+            url: '../Detail/Detail?id='+id,
+            success: function(res) {},
+            fail: function(res) {},
+            complete: function(res) {},
+        })
+    },
+    //删除详情列表
+    deleterDtail(e){
+        let that = this;
+        let id = e.target.dataset.id
+        wx.showModal({
+            title: '温馨提示',
+            content: '确定要删除该条信息吗？',
             success: function (res) {
                 if (res.confirm) {
                     sun.request({
-                        url: 'Cate/del',
-                        data: { id:id },
+                        url: 'articles/del',
+                        data: { id: id },
                         loading: true,
                         success: () => {
                             wx.showToast({
@@ -124,52 +181,5 @@ Page({
                 }
             }
         })
-    },
-
-    // //选择照片
-    // choose: function () {
-    //     let that=this;
-    //     let http = 'https://www.yingsu.shop/files/uploadImg'
-    //     wx.chooseImage({
-    //         success: function (res) {
-    //             var tempFilePaths = res.tempFilePaths
-    //             wx.uploadFile({
-    //                 url:http, //仅为示例，非真实的接口地址
-    //                 filePath: tempFilePaths[0],
-    //                 name: 'file',   
-    //                 formData: {
-    //                    sort:'1'
-    //                 },
-    //                 success: function (res) {
-    //                     let img = JSON.parse(res.data).data.imgUrl
-    //                     that.data.imgs.push(
-    //                         { imgUrl: img, sort: that.data.sValue}
-    //                         )
-    //                 }
-    //             })
-    //         }
-    //     })
-    // },
-    // enterCateValue(e){
-    //     this.setData({
-    //         sValue: e.detail.value
-    //     });
-    //     console.log(this.data.sValue)
-    // }
-    // , btntrue(){
-    //     let that = this;
-    //     sun.request({//请求分类
-    //         url: "Articles/add",
-    //         data: {
-    //             min_desc: this.data.desc,
-    //             money: this.data.money,
-    //             title: this.data.title,
-    //             cateId: this.data.cateId,
-    //             imgUrl: JSON.stringify(this.data.imgs)
-    //         },
-    //         success(res) {
-    //         console.log(res)
-    //         }
-    //     })
-    // }
+    }
 })

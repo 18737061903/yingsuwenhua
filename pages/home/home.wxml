@@ -4,7 +4,7 @@
     <swiper class='swipers' autoplay="true" current="{{currentSwiper}}" interval='2000'  circular="true"autoplay='true' bindchange="swiperChange">
       <block wx:for="{{bannerList}}" wx:key>
         <swiper-item>
-          <image class="swiper_image" src="{{https+item.url}}" lazy-load="true" />
+          <image class="swiper_image" src="{{https+item.url}}" lazy-load="true"  bindlongtap='binBanner'/>
         </swiper-item>
       </block>
     </swiper>
@@ -17,7 +17,7 @@
   <!-- cate -->
   <view class='cate'>
     <view class='cate_main' >
-      <view class='cate_child' wx:for="{{cateList}}" wx:key bindlongtap="longTap" data-id='{{item.id}}'>
+      <view class='cate_child' wx:for="{{cateList}}" wx:key bindlongtap="longTap" data-id='{{item.id}}' bindtap='navoBusiness'>
        <image src='{{https+item.icon}}' data-id='{{item.id}}'></image>
        <text data-id='{{item.id}}'>{{item.name}}</text>
       </view>
@@ -29,13 +29,13 @@
   </view>
   <!-- list -->
   <view class='case'>
-    <view class='case_main' wx:for="{{caseList}}" wx:key>
-      <view class='case_img'>
-        <image src='{{https+item.url}}'></image>
+    <view class='case_main' wx:for="{{caseList}}" wx:key bindtap='navoDtail' data-id='{{item.id}}' bindlongtap='deleterDtail'>
+      <view class='case_img' data-id='{{item.id}}'>
+        <image src='{{https+item.url}}' data-id='{{item.id}}'></image>
       </view> 
-      <view class='case_text'>
-        <text>{{item.title}}</text>
-        <text>{{item.desc}}</text>
+      <view class='case_text' data-id='{{item.id}}'>
+        <text data-id='{{item.id}}'>{{item.title}}</text>
+        <text data-id='{{item.id}}'>{{item.desc}}</text>
       </view> 
     </view>
   </view>

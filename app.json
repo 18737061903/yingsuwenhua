@@ -8,7 +8,10 @@
     "pages/addbanner/addbanner",
     "pages/addBusiness/addBusiness",
     "pages/addDetail/addDetail",
-    "pages/Detail/Detail"
+    "pages/Detail/Detail",
+    "pages/video/video",
+    "pages/editDetail/editDetail",
+    "pages/editClass/editClass"
   ],
 "window": {
     "backgroundTextStyle": "light",

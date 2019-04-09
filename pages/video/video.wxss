@@ -1,0 +1,10 @@
+/* pages/video/video.wxss */
+.pages{
+    padding: 10rpx 20rpx;
+    display: flex;
+    justify-content: space-between
+}
+.videos video{
+    width: 300rpx;
+    height: 300rpx
+}

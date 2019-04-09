@@ -48,7 +48,6 @@
 .banner image{
     width: 100%;
     height: 100%;
-    background: red;
     border-radius: 6rpx;
 }
 .main_right-text{

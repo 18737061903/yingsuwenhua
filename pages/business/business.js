@@ -13,7 +13,7 @@ Page({
       ],
       acindex:0,
     cateList:[],
-        cateId: 5,
+        cateId: 0, //默认取第一个
         isTitle:false,
         articleList:[],
     },
@@ -22,7 +22,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        
     },
 
     /**
@@ -36,6 +36,19 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+        if (app.globalData.id){
+            this.setData({
+                cateId: app.globalData.id
+            })
+            app.globalData.id=null
+            this.data.text.forEach((item,index)=>{
+                if(item.id==this.data.cateId){
+                    this.setData({
+                        acindex:index  
+                    })
+                }
+            })
+        }
         let that=this;
         //请求案例列表
         sun.request({
@@ -152,6 +165,33 @@ Page({
     binNivo(e){
         wx.navigateTo({
             url: '../Detail/Detail?id='+e.target.dataset.id,
+        })
+    },
+    //删除详情
+    bindlongDtail(e) {
+        let that = this;
+        wx.showModal({
+            title: '提示',
+            content: '确定要删除该条信息吗？',
+            success(res) {
+                if (res.confirm) {
+                    sun.request({
+                        url: "articles/del",
+                        showLoading: true,
+                        data: {
+                            id: e.target.dataset.id,
+                        },
+                        success: function (res) {
+                            wx.showToast({
+                                title: '删除成功',
+                            })
+                            that.onShow()
+                        }
+                    })
+                } else if (res.cancel) {
+                    // console.log('用户点击取消')
+                }
+            }
         })
     }
 })

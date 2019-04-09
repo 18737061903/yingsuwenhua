@@ -1,0 +1,17 @@
+/* pages/editDetail/editDetail.wxss *//* pages/addDetail/addDetail.wxss */
+.page{
+    margin-bottom:100rpx; 
+    padding: 10rpx 20rpx;
+}
+.page input{
+  background: #f4f4f4;
+ 
+}
+.page text{
+    font-size: 32rpx;
+}
+.butn{
+    width: 100%;
+    position: fixed;
+    bottom: 0rpx;
+}

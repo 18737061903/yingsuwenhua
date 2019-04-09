@@ -13,8 +13,9 @@ Page({
         ],
         acindex: 0,
         cateList: [],
-        cateId: 5,
-        isTitle: false
+        cateId: 0,//默认取第一个
+        isTitle: false,
+        articleList:[],
     },
 
     /**
@@ -62,6 +63,11 @@ Page({
                 cateId: that.data.cateId,
             },
             success(res) {
+                if (res.articleList) {
+                    that.setData({
+                        articleList: res.articleList
+                    })
+                }
                 if (res.cateList) {
                     that.setData({
                         cateList: res.cateList
@@ -134,5 +140,38 @@ Page({
             cateId: this.data.cateList[index].id
         })
         that.rightData()
-    }
+    },
+    //跳入详情页
+    binDetail(e){
+        wx.navigateTo({
+            url: '../Detail/Detail?id='+e.target.dataset.id,
+        })
+    },
+    //删除详情
+    bindlongDtail(e) {
+        let that = this;
+        wx.showModal({
+            title: '提示',
+            content: '确定要删除该条信息吗？',
+            success(res) {
+                if (res.confirm) {
+                    sun.request({
+                        url: "articles/del",
+                        showLoading: true,
+                        data: {
+                            id: e.target.dataset.id,
+                        },
+                        success: function (res) {
+                                wx.showToast({
+                                    title: '删除成功',
+                                })
+                                that.onShow()
+                        }
+                    })
+                } else if (res.cancel) {
+                    // console.log('用户点击取消')
+                }
+            }
+        })
+      }
 })

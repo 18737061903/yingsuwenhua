@@ -1,0 +1,5 @@
+<!--pages/video/video.wxml-->
+<view class='pages'>
+  <view class='videos' wx:for="{{videoList}}" wx:key><video src='{{https+item.url}}' controls='true' loop="true" show-fullscreen-btn="true" object-fit='contain' poster="{{https+item.url}}?spm=a2c4g.11186623.2.1.yjOb8V&x-oss-process=video/snapshot,t_7000,f_jpg,w_800,h_600,m_fast" bindlongtap='deleterVideo' data-id='{{item.id}}'></video>
+ </view>
+</view>
