@@ -21,12 +21,12 @@ bindinput='money'></input></view>
   </radio-group>
   <view>
     <text>请添加图片</text><text style='margin-left:20rpx;color:red' bindtap='chooseImg'>上传</text>
-    <input placeholder='请输入图片的排序(0-100)' style='font-size:32rpx;' bindinput='imgSort'></input>
+    <input placeholder='请输入图片的排序(0-100)' style='font-size:32rpx;' value='{{imgSort}}' bindinput='imgSort'></input>
     <image wx:for="{{imgs}}" wx:key src='{{https+item.url}}'></image>
   </view>
   <view>
     <text>请添加视频</text><text style='margin-left:20rpx;color:red' bindtap='chooseVideo'>上传</text>
-    <input placeholder='请输入视频的排序(0-100)' style='font-size:32rpx;' bindinput='videoSort'></input>
+    <input placeholder='请输入视频的排序(0-100)' value='{{videoSort}}' style='font-size:32rpx;' bindinput='videoSort'></input>
     <video wx:for="{{videos}}" wx:key src='{{https+item.url}}' controls='true'poster="{{aa}}"></video>
   </view>
   <button class='butn' bindtap='butn'>确定提交</button>

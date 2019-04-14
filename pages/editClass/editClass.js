@@ -1,11 +1,13 @@
 // pages/editClass/editClass.js
+const sun = require('../../utils/sun.js')
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-    id:''
+    id:'',
+    flag:''
     },
 
     /**
@@ -13,7 +15,8 @@ Page({
      */
     onLoad: function (options) {
           this.setData({
-              id:options.id
+              id:options.id,
+              flag:options.flag
           })
     },
 
@@ -92,7 +95,7 @@ Page({
     },
     addbunnei(){
         wx.navigateTo({
-            url: '../addBusiness/addBusiness',
+            url: '../addBusiness/addBusiness?flag='+this.data.flag,
         })
     }
 })

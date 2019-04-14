@@ -1,10 +1,10 @@
 <!--pages/addDetail/addDetail.wxml-->
 <view class='page'>
-  <view><text>标题</text><input placeholder='请添加标题' style='font-size:32rpx;' bindinput='title'></input></view>
-  <view><text>描述</text><input placeholder='请添加描述' style='font-size:32rpx;' bindinput='desc'></input></view>
-  <view><text>小描述</text><input placeholder='请添小描述' style='font-size:32rpx;' bindinput='minDesc'></input></view>
+  <view><text>标题</text><input placeholder='请添加标题' style='font-size:32rpx;' bindinput='title'value="{{title}}" ></input></view>
+  <view><text>描述</text><input placeholder='请添加描述' style='font-size:32rpx;' bindinput='desc' value='{{desc}}'></input></view>
+  <view><text>小描述</text><input placeholder='请添小描述' style='font-size:32rpx;' bindinput='minDesc' value='{{minDesc}}'></input></view>
   <view><text>金额(场/次)</text><input placeholder='请添加金额' style='font-size:32rpx;'
-bindinput='money'></input></view>
+bindinput='money' value='{{money}}'></input></view>
   <text>是否显示为首页案例</text>
   <radio-group class="radio-group" bindchange="radioChange">
     <label class="radio" wx:for="{{ isIndex}}" wx:key>

@@ -113,7 +113,7 @@ Page({
             success: function (res) {
                 if (res.confirm) {
                     wx.navigateTo({
-                        url: '../editClass/editClass?id='+id,
+                        url: '../editClass/editClass?id='+id+'&flag='+1,
                     })
     
                 } else if (res.cancel) {

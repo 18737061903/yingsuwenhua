@@ -115,7 +115,7 @@ Page({
         })
     },
     //编辑详情
-    editDetail(){
+    editDetail(e){
         let that = this;
         wx.showModal({
             title: '温馨提示',
@@ -123,7 +123,7 @@ Page({
             success: function (res) {
                 if (res.confirm) {
                    wx.navigateTo({
-                       url: '../editDetail/editDetail?id=' + that.data.id,
+                       url: '../editDetail/editDetail?id=' + e.target.dataset.id + '&cateid=' + e.target.dataset.cateid,
                    })
                 } else if (res.cancel) {
                     // console.log('用户点击取消')

@@ -42,7 +42,8 @@ Page({
             url: "cate/lst",
             showLoading: true,
             data: {
-                pid: 0
+                pid: 0,
+                type: 2
             },
             success(res) {
                 that.setData({
@@ -61,6 +62,7 @@ Page({
             showLoading: true,
             data: {
                 cateId: that.data.cateId,
+                type: 2
             },
             success(res) {
                 if (res.articleList) {
@@ -173,5 +175,34 @@ Page({
                 }
             }
         })
-      }
+      },
+       /// 长按删除分类
+    longTap: function (e) {
+        let that = this;
+        let id = e.target.dataset.id
+        console.log(id)
+        wx.showModal({
+            title: '温馨提示',
+            content: '确定要编辑该分类吗？',
+            success: function (res) {
+                if (res.confirm) {
+                    wx.navigateTo({
+                        url: '../editClass/editClass?id=' + id+'&flag='+2,
+                    })
+
+                } else if (res.cancel) {
+                    // console.log('用户点击取消')
+                }
+            }
+        })
+    },
+    //长按banner添加详情
+    addDetail(){
+        wx:wx.navigateTo({
+            url: '../addCaseDetail/addCaseDetail',
+            success: function(res) {},
+            fail: function(res) {},
+            complete: function(res) {},
+        })
+    }
 })

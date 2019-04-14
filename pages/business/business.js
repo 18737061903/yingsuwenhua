@@ -16,6 +16,7 @@ Page({
         cateId: 0, //默认取第一个
         isTitle:false,
         articleList:[],
+
     },
 
     /**
@@ -55,9 +56,11 @@ Page({
             url: "cate/lst",
             showLoading:true,
             data: {
-                pid:0
+                pid:0,
+                type: 1
             },
             success(res) {
+                getApp().globalData.cateId =res[0].id
              that.setData({
                  text:res,
                  banner: res[that.data.acindex].banner
@@ -74,6 +77,7 @@ Page({
             showLoading: true,
             data: {
                 cateId: that.data.cateId,
+                type:1
             },
             success(res) {
                 if (res.articleList){
@@ -143,6 +147,7 @@ Page({
             banner:this.data.text[index].banner,
             cateId: this.data.text[index].id
         })
+        getApp().globalData.cateId = this.data.text[index].id
         that.rightData()
     },
     //二级分类赛选

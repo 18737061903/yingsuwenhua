@@ -9,7 +9,7 @@
    line-height: 50rpx
 }
 .contactText {
-    margin-top:120rpx;
+    margin-top:60rpx;
 }
 .contactText text{
   display: block;

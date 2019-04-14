@@ -12,7 +12,7 @@
     </view>
   </picker>
    <text class='name'>请输入分类名称 </text><input class='nameInput' bindinput='caseInput'></input> 
-   <text class='name' wx:if="{{!flag}}">请输入分类显示顺序(0-100)</text><input class='nameInput' value='{{caseSort}}' bindinput='caseSort' wx:if="{{!flag}}"></input> 
+   <text class='name' wx:if="{{!flag}}">请输入分类显示顺序(0-100)</text><input class='nameInput' value='{{sort}}' bindinput='caseSort' wx:if="{{!flag}}"></input> 
    <text class='imgtext' wx:if="{{!flag}}">请点击上传分类图标</text>
    <text class='clickimg' bindtap='clickimg' wx:if="{{!flag}}">上传</text>
    <image src='{{https+caseImg}}' class='img' wx:if="{{!flag}}"></image>

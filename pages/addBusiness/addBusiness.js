@@ -20,16 +20,29 @@ Page({
     pid:0,
     type:1,
     caseInput:'',//分类名称
-    caseSort:'50',//排序
+    sort:'50',//排序
     caseImg:'',
-    caseBanner:'',//banner
+    caseBanner:'',//banner,
+    isflag:false,
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        let that = this;
+        console.log(options.flag,"options.flag")
+            sun.request({
+                url: "cate/lst",
+                data: {
+                    type: options.flag
+                },
+                success(res) {
+                    that.setData({
+                        multiArray: res
+                    })
+                }
+            })
     },
 
     /**
@@ -43,17 +56,8 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        let that = this;
-        sun.request({
-            url: "cate/lst",
-            data: {
-            },
-            success(res) {
-                that.setData({
-                    multiArray:res
-                })
-            }
-        })
+       
+   
     },
 
     /**
@@ -119,7 +123,7 @@ Page({
     //排序
     caseSort(e) {
         this.setData({
-            caseSort: e.detail.value
+            sort: e.detail.value
         })
     },
     //上传图片
@@ -226,7 +230,7 @@ Page({
                 name: that.data.caseInput,
                 icon: that.data.caseImg,
                 banner: that.data.caseBanner,
-                caseSort: that.data.caseSort
+                sort: that.data.sort
             },
             success(res) {
                wx.showToast({

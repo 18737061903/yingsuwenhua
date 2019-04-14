@@ -6,29 +6,29 @@ Page({
      * 页面的初始数据
      */
     data: {
-        aa: '',
         https: 'https://www.yingsu.shop/',
         title: "",//标题
         desc: "",//描述
         minDesc: "",//小描述
         money: '',//金额
         isIndex: [
-            { name: '是', value: 1, checked: 'true' },
+            { name: '是', value: 1},
             { name: '否', value: 0 },
         ],//是否显示为首页案例
         isType: [
-            { name: '业务', value: 1, checked: 'true' },
+            { name: '业务', value: 1},
             { name: '案例', value: 2 },
         ],
-        type: "1",
-        isInde: '1',
-        cateId: "",//分类id
+        type: "",
+        isInde: '',
+        id: "",//分类id
         imgs: [],
         img: [],
         videos: [],
         video: [],
         imgSort: '10',
         videoSort: '10',
+        cateId:''
     },
     radioChange(e) {
         this.setData({
@@ -45,9 +45,55 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        console.log(options)
         this.setData({
-            cateId: options.id
+            id: options.id,
+            cateId:options.cateid
+        })  //请求详情
+        let that = this
+        sun.request({
+            url: "articles/detail",
+            data: {
+                id: that.data.id
+            },
+            success(res) {
+                let data=res
+               that.setData({
+                   title:data.title,
+                   desc:data.desc,
+                   minDesc: data.min_desc,
+                   money:data.money,
+                   type:data.type,
+                   isInde:data.is_index
+               })
+               let indexMsg=that.data.isIndex
+                indexMsg.forEach((item,index)=>{
+                   if(item.value==that.data.isInde){
+                       indexMsg[index].checked=true
+                   }
+               })
+               let typeMsg=that.data.isType;
+               typeMsg.forEach((item,index)=>{
+                   if (item.value == that.data.type) {
+                       typeMsg[index].checked = true
+                   }
+               })
+               that.setData({
+                   isIndex: indexMsg,
+                   isType:typeMsg,
+               })
+            }
         })
+        // sun.request({
+        //     url: "articles/edit",
+        //     data: {
+        //         minDesc:""
+        //     },
+        //     success(res) {
+              
+        //     }
+        // })
+
     },
 
     /**
@@ -61,7 +107,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
+      
     },
 
     /**
@@ -190,8 +236,9 @@ Page({
     //确认提交
     butn() {
         sun.request({
-            url: "articles/add",
+            url: "articles/edit",
             data: {
+                id: this.data.id,
                 cateId: this.data.cateId,
                 title: this.data.title,
                 desc: this.data.desc,
@@ -199,14 +246,32 @@ Page({
                 money: this.data.money,
                 isIndex: this.data.isInde,
                 type: this.data.type,
+            },
+            success(res) {
+                wx.showToast({
+                    title: '编辑文字信息提交成功',
+                })
+            }
+        })
+        this.addvideoANDEimg()
+    },
+    // 添加图片视频
+    addvideoANDEimg(){
+        sun.request({
+            url: "Articles/addFile",
+            data: {
+                id: this.data.id,
+                cateId: this.data.cateId,
                 imgs: JSON.stringify(this.data.imgs),
                 videos: JSON.stringify(this.data.videos)
             },
             success(res) {
                 wx.showToast({
-                    title: '提交成功',
+                    title: '图片视频提交成功',
                 })
             }
         })
     }
+    
+
 })

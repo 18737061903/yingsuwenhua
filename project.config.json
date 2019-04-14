@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 6,
+			"current": 7,
 			"list": [
 				{
 					"id": 0,
@@ -86,6 +86,12 @@
 					"name": "editDetail",
 					"pathName": "pages/editDetail/editDetail",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "addCaseDetail",
+					"pathName": "pages/addCaseDetail/addCaseDetail",
 					"scene": null
 				}
 			]

@@ -1,0 +1,6 @@
+<!--pages/addCaseDetail/addCaseDetail.wxml-->
+  <picker bindchange="bindPickerChange" value="{{index}}" range="{{multiArray}}" range-key="name">
+    <view class="picker">
+      请选择父级分类：{{multiname}}
+    </view>
+  </picker>

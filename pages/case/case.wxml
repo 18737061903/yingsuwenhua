@@ -2,13 +2,13 @@
 <view class='page' >
 <scroll-view scroll-x class='nav' >
       <view wx:for="{{text}}" class='navtext'wx:key bindtap='selcetCate'
-      data-index='{{index}}'><text class='{{acindex==index?"activis":""}}' data-index='{{index}}'>{{item.name}}</text></view>
+      data-index='{{index}}' bindlongtap="longTap" data-id='{{item.id}}'><text class='{{acindex==index?"activis":""}}' data-index='{{index}}' data-id='{{item.id}}'>{{item.name}}</text></view>
 </scroll-view>
   <scroll-view scroll-y="true" class='main_right'>
-    <view class='banner'>
+    <view class='banner' bindlongtap='addDetail' >
       <image src='{{https+banner}}'></image>
     </view>
-    <text class='main_right-text' wx:if="{{!isTitle}}">——— {{cateList[0].name}} ———</text>
+    <text class='main_right-text' wx:if="{{!isTitle}}">——— 成功案例 ———</text>
     <view class='mincate' wx:if="{{isTitle}}">
       <text wx:for="{{cateList}}" wx:key bindtap='minCate' data-index='{{index}}'>{{item.name}}</text>
     </view>
@@ -16,7 +16,7 @@
         <view class='list' wx:for="{{articleList}}" wx:key bindtap='binDetail' data-id='{{item.id}}' bindlongtap='bindlongDtail'>
          <view class='list_up' data-id='{{item.id}}'> <image src='{{https+item.img_url}}' data-id='{{item.id}}'></image></view>
          <view class='list_dow' data-id='{{item.id}}'>
-          <text data-id='{{item.id}}'>{{item.title}}</text>
+          <text data-id='{{item.id}}'>{{item.title}} {{item.min_desc}}</text>
           <text><text data-id='{{item.id}}'>￥{{item.money}}/场次起</text><image src=''></image></text>
          </view>
        </view>

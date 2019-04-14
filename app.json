@@ -11,7 +11,8 @@
     "pages/Detail/Detail",
     "pages/video/video",
     "pages/editDetail/editDetail",
-    "pages/editClass/editClass"
+    "pages/editClass/editClass",
+    "pages/addCaseDetail/addCaseDetail"
   ],
 "window": {
     "backgroundTextStyle": "light",
