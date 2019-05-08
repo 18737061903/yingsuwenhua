@@ -1,6 +1,7 @@
 // pages/business/business.js
 const app = getApp()
 const sun = require('../../utils/sun.js')
+const name = require('../../utils/name.js')
 Page({
     /**
      * 页面的初始数据
@@ -16,13 +17,16 @@ Page({
         cateId: 0,//默认取第一个
         isTitle: false,
         articleList:[],
+        user:""
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        this.setData({
+            user: wx.getStorageSync("res")
+        })
     },
 
     /**
@@ -47,9 +51,13 @@ Page({
             },
             success(res) {
                 that.setData({
-                    text: res,
-                    banner: res[that.data.acindex].banner
+                    text: res
                 })
+                if (res[that.data.acindex].banner) {
+                    that.setData({
+                        banner: res[that.data.acindex].banner
+                    })
+                }
             }
         })
         that.rightData()
@@ -152,57 +160,87 @@ Page({
     //删除详情
     bindlongDtail(e) {
         let that = this;
-        wx.showModal({
-            title: '提示',
-            content: '确定要删除该条信息吗？',
-            success(res) {
-                if (res.confirm) {
-                    sun.request({
-                        url: "articles/del",
-                        showLoading: true,
-                        data: {
-                            id: e.target.dataset.id,
-                        },
-                        success: function (res) {
-                                wx.showToast({
-                                    title: '删除成功',
-                                })
-                                that.onShow()
+       
+            if (this.data.user.isAuth == 1) {
+                wx.showModal({
+                    title: '提示',
+                    content: '确定要删除该条信息吗？',
+                    success(res) {
+                        if (res.confirm) {
+                            sun.request({
+                                url: "articles/del",
+                                showLoading: true,
+                                data: {
+                                    id: e.target.dataset.id,
+                                },
+                                success: function (res) {
+                                    wx.showToast({
+                                        title: '删除成功',
+                                    })
+                                    that.onShow()
+                                }
+                            })
+                        } else if (res.cancel) {
+                            // console.log('用户点击取消')
                         }
-                    })
-                } else if (res.cancel) {
-                    // console.log('用户点击取消')
-                }
+                    }
+                })
+            } else {
+                wx.showToast({
+                    icon: "none",
+                    title: '您没有权限编辑',
+                })
             }
-        })
+      
+
+      
       },
        /// 长按删除分类
     longTap: function (e) {
         let that = this;
         let id = e.target.dataset.id
-        console.log(id)
-        wx.showModal({
-            title: '温馨提示',
-            content: '确定要编辑该分类吗？',
-            success: function (res) {
-                if (res.confirm) {
-                    wx.navigateTo({
-                        url: '../editClass/editClass?id=' + id+'&flag='+2,
-                    })
+       
+            if (this.data.user.isAuth == 1) {
+                wx.showModal({
+                    title: '温馨提示',
+                    content: '确定要编辑该分类吗？',
+                    success: function (res) {
+                        if (res.confirm) {
+                            wx.navigateTo({
+                                url: '../editClass/editClass?id=' + id + '&flag=' + 2,
+                            })
 
-                } else if (res.cancel) {
-                    // console.log('用户点击取消')
-                }
+                        } else if (res.cancel) {
+                            // console.log('用户点击取消')
+                        }
+                    }
+                })
+            } else {
+                wx.showToast({
+                    icon: "none",
+                    title: '您没有权限编辑',
+                })
             }
-        })
+      
+       
     },
     //长按banner添加详情
     addDetail(){
-        wx:wx.navigateTo({
-            url: '../addCaseDetail/addCaseDetail',
-            success: function(res) {},
-            fail: function(res) {},
-            complete: function(res) {},
-        })
+        
+            if (this.data.user.isAuth == 1) {
+                wx: wx.navigateTo({
+                    url: '../addCaseDetail/addCaseDetail',
+                    success: function (res) { },
+                    fail: function (res) { },
+                    complete: function (res) { },
+                })
+            } else {
+                wx.showToast({
+                    icon: "none",
+                    title: '您没有权限编辑',
+                })
+            }
+       
+  
     }
 })

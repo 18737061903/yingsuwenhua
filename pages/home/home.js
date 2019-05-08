@@ -3,6 +3,7 @@
 //获取应用实例
 const app = getApp()
 const sun = require('../../utils/sun.js')
+const name = require('../../utils/name.js')
 Page({
     data: {
         https: 'https://yingsuwenhua.oss-cn-shanghai.aliyuncs.com/',
@@ -10,14 +11,23 @@ Page({
         ],
         currentSwiper: 0,
         cateList:[],
-        caseList:[]
+        caseList:[],
+        user:"",
+        data : {
+            page: 2,
+            row: 3
+        }
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        if (!wx.getStorageSync("res")){
+        this.setData({
+            user: wx.getStorageSync("res")
+        })
+        let user = wx.getStorageSync("res")
+        if (!user){
             wx.navigateTo({
                 url: "../wxlogin/wxlogin",
             })
@@ -68,7 +78,7 @@ Page({
         })
         
     },
-
+  
     /**
      * 生命周期函数--监听页面隐藏
      */
@@ -86,15 +96,45 @@ Page({
     /**
      * 页面相关事件处理函数--监听用户下拉动作
      */
-    onPullDownRefresh: function () {
-
+    onPullDownRefresh: function (e) {
+       
     },
 
     /**
      * 页面上拉触底事件的处理函数
      */
     onReachBottom: function () {
-
+     
+       
+        this.pullData(this.data.data)
+    },
+    //下拉请求
+    pullData(data) {
+        let that = this;
+        sun.request({
+            url: "index/indexCase",
+            showLoading: true,
+            data: {
+                page: data.page,
+                row: data.row
+            },
+            success(res) {
+                if(JSON.stringify(res)!="{}"){
+                    that.data.data.page++
+                    console.log(that.data.data)
+                    that.data.caseList.push(res)
+                    that.setData({
+                        caseList: that.data.caseList
+                    })
+                }else{
+                    wx.showToast({
+                        icon:"none",
+                        title: '没有数据啦',
+                    })
+                }
+                
+            }
+        })
     },
 
     /**
@@ -106,21 +146,31 @@ Page({
     /// 长按删除分类
     longTap: function (e) {
         let that=this;
-        let id = e.target.dataset.id
-        wx.showModal({
-            title: '温馨提示',
-            content: '确定要编辑该分类吗？',
-            success: function (res) {
-                if (res.confirm) {
-                    wx.navigateTo({
-                        url: '../editClass/editClass?id='+id+'&flag='+1,
-                    })
-    
-                } else if (res.cancel) {
-                    // console.log('用户点击取消')
-                }
+        let id = e.target.dataset.id;
+       
+            if (this.data.user.isAuth == 1) {
+                wx.showModal({
+                    title: '温馨提示',
+                    content: '确定要编辑该分类吗？',
+                    success: function (res) {
+                        if (res.confirm) {
+                            wx.navigateTo({
+                                url: '../editClass/editClass?id=' + id + '&flag=' + 1,
+                            })
+
+                        } else if (res.cancel) {
+                            // console.log('用户点击取消')
+                        }
+                    }
+                })
+            } else {
+                wx.showToast({
+                    icon: "none",
+                    title: '您没有权限编辑',
+                })
             }
-        })
+      
+     
     },
     //跳入业务列表
     navoBusiness(e){
@@ -131,19 +181,28 @@ Page({
     },
    //编辑轮播图片
     binBanner(){
-        wx.showModal({
-            title: '温馨提示',
-            content: '确定要编辑轮播图吗？',
-            success: function (res) {
-                if (res.confirm) {
-                    wx.navigateTo({
-                        url: '../addbanner/addbanner',
-                    })
-                } else if (res.cancel) {
-                    // console.log('用户点击取消')
-                }
+        if (this.data.user.isAuth==1){
+                wx.showModal({
+                    title: '温馨提示',
+                    content: '确定要编辑轮播图吗？',
+                    success: function (res) {
+                        if (res.confirm) {
+                            wx.navigateTo({
+                                url: '../addbanner/addbanner',
+                            })
+                        } else if (res.cancel) {
+                            // console.log('用户点击取消')
+                        }
+                    }
+                })
+            }else{
+                wx.showToast({
+                    icon:"none",
+                    title: '您没有权限编辑',
+                })
             }
-        })
+      
+       
        
     },
     //跳入详情页
@@ -159,27 +218,37 @@ Page({
     //删除详情列表
     deleterDtail(e){
         let that = this;
-        let id = e.target.dataset.id
-        wx.showModal({
-            title: '温馨提示',
-            content: '确定要删除该条信息吗？',
-            success: function (res) {
-                if (res.confirm) {
-                    sun.request({
-                        url: 'articles/del',
-                        data: { id: id },
-                        loading: true,
-                        success: () => {
-                            wx.showToast({
-                                title: '删除成功',
-                            })
-                            that.onShow()
+        let id = e.target.dataset.id;
+           
+                if (this.data.user.isAuth == 1) {
+                    wx.showModal({
+                        title: '温馨提示',
+                        content: '确定要删除该条信息吗？',
+                        success: function (res) {
+                            if (res.confirm) {
+                                sun.request({
+                                    url: 'articles/del',
+                                    data: { id: id },
+                                    loading: true,
+                                    success: () => {
+                                        wx.showToast({
+                                            title: '删除成功',
+                                        })
+                                        that.onShow()
+                                    }
+                                })
+                            } else if (res.cancel) {
+                                // console.log('用户点击取消')
+                            }
                         }
                     })
-                } else if (res.cancel) {
-                    // console.log('用户点击取消')
+                } else {
+                    wx.showToast({
+                        icon: "none",
+                        title: '您没有权限编辑',
+                    })
                 }
-            }
-        })
+          
+       
     }
 })

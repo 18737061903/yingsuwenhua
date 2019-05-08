@@ -18,27 +18,27 @@
 }
 /*用来包裹所有的小圆点  */
 .dots {
-  height: 70rpx;
+  height: 40rpx;
   display: flex;
   flex-direction: row;
   position: absolute;
   right: 20rpx;
-  bottom: 10rpx;
+  bottom: 17rpx;
 
 }
 /*未选中时的小圆点样式 */
 .dot {
-  width: 10rpx;
-  height: 45rpx;
+  width: 6rpx;
+  height: 30rpx;
   border-radius: 20rpx;
-  margin-right: 30rpx;
+  margin-right: 20rpx;
   background-color: #f4f4f4;
   transform: rotate(25deg);
 }
 /*选中以后的小圆点样式  */
 .active {
-  width: 10rpx;
-  height: 45rpx;
+  width: 6rpx;
+  height: 30rpx;
   border-radius: 20rpx;
   background-color: #cccccc;
   transform: rotate(25deg);

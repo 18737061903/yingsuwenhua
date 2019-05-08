@@ -8,7 +8,7 @@
     <view class='banner' bindlongtap='addDetail' >
       <image src='{{https+banner}}'></image>
     </view>
-    <text class='main_right-text' wx:if="{{!isTitle}}">——— 成功案例 ———</text>
+    <text class='main_right-text' wx:if="{{!isTitle}}">—— 成功案例 ——</text>
     <view class='mincate' wx:if="{{isTitle}}">
       <text wx:for="{{cateList}}" wx:key bindtap='minCate' data-index='{{index}}'>{{item.name}}</text>
     </view>

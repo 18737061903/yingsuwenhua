@@ -9,7 +9,7 @@
     <view class='banner'>
       <image src='{{https+banner}}'></image>
     </view>
-    <text class='main_right-text' wx:if="{{!isTitle}}">——— {{cateList[0].name}} ———</text>
+    <text class='main_right-text' wx:if="{{!isTitle}}">—— {{cateList[0].name}} ——</text>
     <view class='mincate' wx:if="{{isTitle}}">
       <text wx:for="{{cateList}}" wx:key bindtap='minCate' data-index='{{index}}' bindlongtap="longTap" data-id='{{item.id}}'>{{item.name}}</text>
     </view>

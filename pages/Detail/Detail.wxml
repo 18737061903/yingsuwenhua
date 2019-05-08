@@ -11,20 +11,20 @@
       <text>— 活动内容 —</text> 
     </view>
     <view class='img' wx:for="{{detailList.imgs}}" wx:key bindlongtap='deleterImg' data-id='{{item.id}}'>
-      <image src='{{https+item.url}}' lazy-load data-id='{{item.id}}'></image>
+      <image src='{{https+item.url}}' lazy-load data-id='{{item.id}}' mode='aspectFit'></image>
     </view>
     <view class='footer'>
-      <view class='footer-child'>
+      <!-- <view class='footer-child'>
         <image src='../../img/img/yh.png'></image><text>特价优惠:￥6200/场次</text>
       </view>
        <view class='footer-child'>
         <image src='../../img/img/yh.png'></image><text>服务时间:全天</text>
+      </view> -->
+       <view class='footer-child'>
+        <image src='../../img/img/tell.png'></image><text>联系方式:13651868673</text>
       </view>
        <view class='footer-child'>
-        <image src='../../img/img/yh.png'></image><text>联系方式:187740720</text>
-      </view>
-       <view class='footer-child'>
-        <image src='../../img/img/yh.png'></image><text>邮箱:liwenpeng@163.com</text>
+        <image src='../../img/img/email.png'></image><text>邮箱:992569519@qq.com</text>
       </view>
     </view>
 </view>

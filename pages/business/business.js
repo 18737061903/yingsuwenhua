@@ -1,6 +1,7 @@
 // pages/business/business.js
 const app = getApp()
 const sun = require('../../utils/sun.js')
+const name = require('../../utils/name.js')
 Page({
     /**
      * 页面的初始数据
@@ -16,14 +17,16 @@ Page({
         cateId: 0, //默认取第一个
         isTitle:false,
         articleList:[],
-
+        user:"",
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        
+        this.setData({
+            user: wx.getStorageSync("res")
+        })
     },
 
     /**
@@ -80,6 +83,7 @@ Page({
                 type:1
             },
             success(res) {
+             
                 if (res.articleList){
                     that.setData({
                         articleList: res.articleList
@@ -143,6 +147,7 @@ Page({
         let that=this
         let index = e.target.dataset.index;
         this.setData({
+            // articleList: [],//为空的情况下
             acindex:index,
             banner:this.data.text[index].banner,
             cateId: this.data.text[index].id
@@ -161,10 +166,30 @@ Page({
     },
     //长按添加
     longTap(e){
-        console.log(e.target.dataset.id)
-        wx.navigateTo({
-            url: '../addDetail/addDetail?id='+e.target.dataset.id,
-        })
+       
+            if (this.data.user.isAuth == 1) {
+                wx.showModal({
+                    title: '提示',
+                    content: '确定要编辑该条信息吗？',
+                    success(res) {
+                        if (res.confirm) {
+                            wx.navigateTo({
+                                url: '../chooseDeleter/chooseDeleter?id=' + e.target.dataset.id,
+                            })
+                        } else if (res.cancel) {
+                            // console.log('用户点击取消')
+                        }
+                    }
+                })
+            } else {
+                wx.showToast({
+                    icon: "none",
+                    title: '您没有权限编辑',
+                })
+            }
+      
+    
+   
     },
     //跳转详情
     binNivo(e){
@@ -175,28 +200,39 @@ Page({
     //删除详情
     bindlongDtail(e) {
         let that = this;
-        wx.showModal({
-            title: '提示',
-            content: '确定要删除该条信息吗？',
-            success(res) {
-                if (res.confirm) {
-                    sun.request({
-                        url: "articles/del",
-                        showLoading: true,
-                        data: {
-                            id: e.target.dataset.id,
-                        },
-                        success: function (res) {
-                            wx.showToast({
-                                title: '删除成功',
+       
+            if (this.data.user.isAuth == 1) {
+                wx.showModal({
+                    title: '提示',
+                    content: '确定要删除该条信息吗？',
+                    success(res) {
+                        if (res.confirm) {
+                            sun.request({
+                                url: "articles/del",
+                                showLoading: true,
+                                data: {
+                                    id: e.target.dataset.id,
+                                },
+                                success: function (res) {
+                                    wx.showToast({
+                                        title: '删除成功',
+                                    })
+                                    that.onShow()
+                                }
                             })
-                            that.onShow()
+                        } else if (res.cancel) {
+                            // console.log('用户点击取消')
                         }
-                    })
-                } else if (res.cancel) {
-                    // console.log('用户点击取消')
-                }
+                    }
+                })
+            } else {
+                wx.showToast({
+                    icon: "none",
+                    title: '您没有权限编辑',
+                })
             }
-        })
+       
+
+     
     }
 })

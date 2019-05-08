@@ -1,19 +1,23 @@
 // pages/video/video.js
 const sun = require('../../utils/sun.js')
+const name = require('../../utils/name.js')
 Page({
     /**
      * 页面的初始数据
      */
     data: {
         https: 'https://yingsuwenhua.oss-cn-shanghai.aliyuncs.com/',
-        videoList:[]
+        videoList:[],
+        user: ""
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        console.log(options)
+        this.setData({
+            user: wx.getStorageSync("res")
+        })
         //请求
         let that = this
         sun.request({
@@ -81,27 +85,37 @@ Page({
     //删除
     deleterVideo(e){
         let that = this;
-        let id = e.target.dataset.id
-        wx.showModal({
-            title: '温馨提示',
-            content: '确定要删除该条信息吗？',
-            success: function (res) {
-                if (res.confirm) {
-                    sun.request({
-                        url: 'files/del',
-                        data: { id: id },
-                        loading: true,
-                        success: () => {
-                            wx.showToast({
-                                title: '删除成功',
-                            })
-                            that.onShow()
+        let id = e.target.dataset.id;
+            
+                if (this.data.user.isAuth == 1) {
+                    wx.showModal({
+                        title: '温馨提示',
+                        content: '确定要删除该条信息吗？',
+                        success: function (res) {
+                            if (res.confirm) {
+                                sun.request({
+                                    url: 'files/del',
+                                    data: { id: id },
+                                    loading: true,
+                                    success: () => {
+                                        wx.showToast({
+                                            title: '删除成功',
+                                        })
+                                        that.onShow()
+                                    }
+                                })
+                            } else if (res.cancel) {
+                                // console.log('用户点击取消')
+                            }
                         }
                     })
-                } else if (res.cancel) {
-                    // console.log('用户点击取消')
+                } else {
+                    wx.showToast({
+                        icon: "none",
+                        title: '您没有权限编辑',
+                    })
                 }
-            }
-        })
+            
+      
     }
 })

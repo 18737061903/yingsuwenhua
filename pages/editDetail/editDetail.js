@@ -144,6 +144,56 @@ Page({
     onShareAppMessage: function () {
 
     },
+    //多张图片上传
+    uploadimg(data) {
+        var that = this;
+        var i = data.i ? data.i : 0;//当前上传的哪张图片
+        var success = data.success ? data.success : 0;//上传成功的个数
+        var fail = data.fail ? data.fail : 0;//上传失败的个数
+        wx.uploadFile({
+            url: data.url,
+            filePath: data.path[i],
+            name: 'file',//这里根据自己的实际情况改
+            formData: {},//这里是上传图片时一起上传的数据
+            success: (resp) => {
+                if (JSON.parse(resp.data).msg == "成功") {
+                    success++;//图片上传成功，图片上传成功的变量+1
+                }
+                that.data.img.push(
+                    { url: JSON.parse(resp.data).data.imgUrl, sort: that.data.imgSort }
+                )
+                that.setData({
+                    imgs: that.data.img
+                })
+                console.log(that.data.img)
+                // console.log(resp,"成功")
+                // console.log(i);
+                //这里可能有BUG，失败也会执行这里,所以这里应该是后台返回过来的状态码为成功时，这里的success才+1
+            },
+            fail: (res) => {
+                // console.log(res,"失败")
+                fail++;//图片上传失败，图片上传失败的变量+1
+                // console.log('fail:' + i + "fail:" + fail);
+            },
+            complete: () => {
+                i++;//这个图片执行完上传后，开始上传下一张
+                if (i == data.path.length) {   //当图片传完时，停止调用          
+                    console.log('执行完毕');
+                    wx.showToast({
+                        icon: 'none',
+                        title: '成功：' + success + " 失败：" + fail,
+                    })
+                    // console.log('成功：' + success + " 失败：" + fail);
+                } else {//若图片还没有传完，则继续调用函数
+                    data.i = i;
+                    data.success = success;
+                    data.fail = fail;
+                    that.uploadimg(data);
+                }
+
+            }
+        });
+    },
     // //选择照片
     chooseImg: function () {
         let that = this;
@@ -151,22 +201,23 @@ Page({
         wx.chooseImage({
             success: function (res) {
                 var tempFilePaths = res.tempFilePaths
-                wx.uploadFile({
-                    url: http, //仅为示例，非真实的接口地址
-                    filePath: tempFilePaths[0],
-                    name: 'file',
-                    formData: {
-                        sort: '1'
-                    },
-                    success: function (res) {
-                        that.data.img.push(
-                            { url: JSON.parse(res.data).data.imgUrl, sort: that.data.imgSort }
-                        )
-                        that.setData({
-                            imgs: that.data.img
-                        })
-                    }
-                })
+                that.uploadimg({ url: http, path: tempFilePaths})
+                // wx.uploadFile({
+                //     url: http, //仅为示例，非真实的接口地址
+                //     filePath: tempFilePaths[0],
+                //     name: 'file',
+                //     formData: {
+                //         sort: '1'
+                //     },
+                //     success: function (res) {
+                //         that.data.img.push(
+                //             { url: JSON.parse(res.data).data.imgUrl, sort: that.data.imgSort }
+                //         )
+                //         that.setData({
+                //             imgs: that.data.img
+                //         })
+                //     }
+                // })
             }
         })
     },
@@ -189,6 +240,7 @@ Page({
                         sort: '1'
                     },
                     success: function (res) {
+                        // console.log(res)
                         that.data.video.push(
                             { url: JSON.parse(res.data).data.imgUrl, sort: that.data.videoSort }
                         )

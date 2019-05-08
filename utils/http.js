@@ -1,3 +1,4 @@
+// isAuth: 0没有权限 1有权限
 // 1、首页
 // / Index / index   首页分类列表 and banner列表
 // / Index / indexCase 首页案例列表  （分页 page页码 row 条数）

@@ -1,7 +1,7 @@
 <view class='page' scroll-y="true">
   <!-- banner -->
   <view class='swiper_box'>
-    <swiper class='swipers' autoplay="true" current="{{currentSwiper}}" interval='2000'  circular="true"autoplay='true' bindchange="swiperChange">
+    <swiper class='swipers' current="{{currentSwiper}}" interval='2000'   autoplay='true' bindchange="swiperChange">
       <block wx:for="{{bannerList}}" wx:key>
         <swiper-item>
           <image class="swiper_image" src="{{https+item.url}}" lazy-load="true"  bindlongtap='binBanner'/>

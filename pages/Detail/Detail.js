@@ -1,5 +1,6 @@
 // pages/Detail/Detail.js
 const sun = require('../../utils/sun.js')
+const name = require('../../utils/name.js')
 Page({
 
     /**
@@ -9,6 +10,7 @@ Page({
         https: 'https://yingsuwenhua.oss-cn-shanghai.aliyuncs.com/',
       id:'',
       detailList:[],
+        user: "",
     },
 
     /**
@@ -16,8 +18,9 @@ Page({
      */
     onLoad: function (options) {
         this.setData({
-            id:options.id
-        })
+            id:options.id,
+            user: wx.getStorageSync("res")
+        })  
 
     },
 
@@ -86,27 +89,36 @@ Page({
     deleterImg(e){
         let that = this;
         let id = e.target.dataset.id
-        wx.showModal({
-            title: '温馨提示',
-            content: '确定要删除该条信息吗？',
-            success: function (res) {
-                if (res.confirm) {
-                    sun.request({
-                        url: 'files/del',
-                        data: { id: id },
-                        loading: true,
-                        success: () => {
-                            wx.showToast({
-                                title: '删除成功',
+            if (this.data.user.isAuth == 1) {
+                wx.showModal({
+                    title: '温馨提示',
+                    content: '确定要删除该图片吗？',
+                    success: function (res) {
+                        if (res.confirm) {
+                            sun.request({
+                                url: 'files/del',
+                                data: { id: id },
+                                loading: true,
+                                success: () => {
+                                    wx.showToast({
+                                        title: '删除成功',
+                                    })
+                                    that.onShow()
+                                }
                             })
-                            that.onShow()
+                        } else if (res.cancel) {
+                            // console.log('用户点击取消')
                         }
-                    })
-                } else if (res.cancel) {
-                    // console.log('用户点击取消')
-                }
+                    }
+                })
+            } else {
+                wx.showToast({
+                    icon: "none",
+                    title: '您没有权限编辑',
+                })
             }
-        })
+     
+     
     },
     //查看更多
     moreVideo(){
@@ -117,18 +129,28 @@ Page({
     //编辑详情
     editDetail(e){
         let that = this;
-        wx.showModal({
-            title: '温馨提示',
-            content: '确定要编辑该条信息吗？',
-            success: function (res) {
-                if (res.confirm) {
-                   wx.navigateTo({
-                       url: '../editDetail/editDetail?id=' + e.target.dataset.id + '&cateid=' + e.target.dataset.cateid,
-                   })
-                } else if (res.cancel) {
-                    // console.log('用户点击取消')
-                }
+        
+            if (this.data.user.isAuth == 1) {
+                wx.showModal({
+                    title: '温馨提示',
+                    content: '确定要编辑该条信息吗？',
+                    success: function (res) {
+                        if (res.confirm) {
+                            wx.navigateTo({
+                                url: '../editDetail/editDetail?id=' + e.target.dataset.id + '&cateid=' + e.target.dataset.cateid,
+                            })
+                        } else if (res.cancel) {
+                            // console.log('用户点击取消')
+                        }
+                    }
+                })
+            } else {
+                wx.showToast({
+                    icon: "none",
+                    title: '您没有权限编辑',
+                })
             }
-        })
+      
+       
     }
 })

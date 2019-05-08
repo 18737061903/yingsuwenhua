@@ -189,6 +189,7 @@ Page({
                 pid: that.data.pid,
                 type: that.data.type,
                 name: that.data.caseInput,
+                sort: that.data.sort
             },
             success(res) {
                 wx.showToast({
