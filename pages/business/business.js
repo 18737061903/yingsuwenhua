@@ -8,6 +8,7 @@ Page({
      */
     data: {
         https: 'https://yingsuwenhua.oss-cn-shanghai.aliyuncs.com/',
+        thumbnail:'?x-oss-process=image/resize,m_fill,h_100,w_132',
       banner:'',//右边大图
       text:[
 
@@ -80,7 +81,9 @@ Page({
             showLoading: true,
             data: {
                 cateId: that.data.cateId,
-                type:1
+                type:1,
+                // page:1,////页码
+                // row:6////行数
             },
             success(res) {
              

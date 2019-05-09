@@ -6,7 +6,7 @@
 </scroll-view>
   <scroll-view scroll-y="true" class='main_right'>
     <view class='banner' bindlongtap='addDetail' >
-      <image src='{{https+banner}}'></image>
+       <image src='{{https+banner}}' ></image> <!-- mode="aspectFill" -->
     </view>
     <text class='main_right-text' wx:if="{{!isTitle}}">—— 成功案例 ——</text>
     <view class='mincate' wx:if="{{isTitle}}">

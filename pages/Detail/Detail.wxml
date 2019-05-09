@@ -11,7 +11,7 @@
       <text>— 活动内容 —</text> 
     </view>
     <view class='img' wx:for="{{detailList.imgs}}" wx:key bindlongtap='deleterImg' data-id='{{item.id}}'>
-      <image src='{{https+item.url}}' lazy-load data-id='{{item.id}}' mode='aspectFit'></image>
+      <image src='{{https+item.url}}' lazy-load data-id='{{item.id}}' mode='widthFix'></image>
     </view>
     <view class='footer'>
       <!-- <view class='footer-child'>
