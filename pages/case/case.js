@@ -8,6 +8,7 @@ Page({
      */
     data: {
         https: 'https://yingsuwenhua.oss-cn-shanghai.aliyuncs.com/',
+        thumbnail: '?x-oss-process=image/resize,m_fill,h_100,w_132',
         banner: '',//右边大图
         text: [
 
@@ -17,7 +18,9 @@ Page({
         cateId: 0,//默认取第一个
         isTitle: false,
         articleList:[],
-        user:""
+        user:"",
+        page:2,//
+        translateX:1
     },
 
     /**
@@ -40,6 +43,11 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+        //初始化请求页数
+        this.setData({
+            page: 2,//下拉刷新
+        })
+
         let that = this;
         //请求案例列表
         sun.request({
@@ -50,6 +58,7 @@ Page({
                 type: 2
             },
             success(res) {
+                wx.hideLoading()
                 that.setData({
                     text: res
                 })
@@ -62,7 +71,7 @@ Page({
         })
         that.rightData()
     },
-    rightData() {
+    rightData(page) {
         let that = this
         //右边列表
         sun.request({
@@ -70,14 +79,42 @@ Page({
             showLoading: true,
             data: {
                 cateId: that.data.cateId,
-                type: 2
+                type: 2,
+                page: page ? page : 1,////页码
+                row: 4////行数
             },
             success(res) {
-                if (res.articleList) {
-                    that.setData({
-                        articleList: res.articleList
-                    })
+                wx.hideLoading()
+                if (page) {
+                    if (res.articleList) {
+                        let list = that.data.articleList
+                        let arr = list.concat(res.articleList)
+                        that.setData({
+                            articleList: arr
+                        })
+                    } else {
+                        wx.showToast({
+                            icon: "none",
+                            title: '已经到底啦！(`O′)',
+                        })
+                    }
+                } else {
+                    if (res.articleList) {
+                        //   let list = that.data.articleList
+                        //   let arr = list.concat(res.articleList)
+                        that.setData({
+                            articleList: res.articleList
+                        })
+                    } else {
+                        wx.showToast({
+                            icon: "none",
+                            title: '已经到底啦！(`O′)',
+                        })
+                    }
                 }
+
+
+             
                 if (res.cateList) {
                     that.setData({
                         cateList: res.cateList
@@ -96,7 +133,6 @@ Page({
             }
         })
     },
-
     /**
      * 生命周期函数--监听页面隐藏
      */
@@ -122,7 +158,8 @@ Page({
      * 页面上拉触底事件的处理函数
      */
     onReachBottom: function () {
-
+        let page=this.data.page++
+        this.rightData(page)
     },
 
     /**
@@ -138,8 +175,11 @@ Page({
         this.setData({
             acindex: index,
             banner: this.data.text[index].banner,
-            cateId: this.data.text[index].id
+            cateId: this.data.text[index].id,
+            page:2,
+            articleList:[],
         })
+        console.log("2")
         that.rightData()
     },
     //二级分类赛选
@@ -186,6 +226,7 @@ Page({
                     }
                 })
             } else {
+                return
                 wx.showToast({
                     icon: "none",
                     title: '您没有权限编辑',
@@ -216,6 +257,7 @@ Page({
                     }
                 })
             } else {
+                return
                 wx.showToast({
                     icon: "none",
                     title: '您没有权限编辑',
@@ -235,6 +277,7 @@ Page({
                     complete: function (res) { },
                 })
             } else {
+                return
                 wx.showToast({
                     icon: "none",
                     title: '您没有权限编辑',

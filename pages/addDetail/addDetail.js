@@ -232,6 +232,8 @@ Page({
     },
     //确认提交
     butn(){
+
+      
         sun.request({
             url: "articles/add",
             data: {
@@ -248,6 +250,10 @@ Page({
             success(res) {
                 wx.showToast({
                     title: '提交成功',
+                })
+                console.log("提交成功ok")
+                wx.navigateBack({
+                    delta: 2,
                 })
             }
         })

@@ -10,12 +10,14 @@
     background: #fff;
     float: left;
     height: 100vh;
+    position: relative;
 }
 .main_text{
     width: 122rpx;
     height: 112rpx;
     text-align: center;
     line-height: 112rpx;
+    position: relative;
 }
 .main_text text{
     display: inline-block;
@@ -25,12 +27,24 @@
     text-align: center;
     line-height: 82rpx;
 }
+.line{
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* width: 122rpx; */
+    height: 112rpx;
+    /* background:rgba(0, 0, 0, 0.1); */
+    transition: all .3s ease-out .1s;
+    border-left:  6rpx solid #ffc001;
+    }
 .activis{
- border-left:  6rpx solid #ffc001;
+ /* border-left:  6rpx solid #ffc001; */
+ transition: all .3s ease-out .1s;
  color: #ffc001;
 }
 .acviewtiv{
     background: #f4f4f4;
+    transition: all 1s;
 }
 .main_right{
     width: 628rpx;

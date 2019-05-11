@@ -6,17 +6,18 @@
 
 }
 .nav{
-    height:90rpx;
+    height:60rpx;
     white-space:nowrap;
     position: fixed;
     top: 0rpx;
     z-index: 99;
     background: #FFF;
-    line-height: 90rpx;
+    line-height: 60rpx;
     box-shadow: 0rpx 5rpx  5rpx rgba(0, 0, 0, 0.3);
+    padding: 0rpx 20rpx
 }
 .navtext{
-    margin-left:20rpx;
+    /* margin-left:20rpx; */
      height: 40rpx;
       box-sizing:border-box; 
       line-height: 40rpx;
@@ -28,17 +29,43 @@
       font-weight:400;
       color:rgba(102,102,102,1);
 }
-.activis{
- border-bottom:  6rpx solid #ffc001;
- color: #ffc001;
- padding-bottom: 4rpx;
+.line{
+    position: absolute;
+    top: 56rpx;
+    left: 0rpx;
+    height: 6rpx;
+    /* background: #009977; */
+    transition: all .3s ease-out .1s;
+    z-index: 999;
+    padding:0rpx 20rpx; 
+    box-sizing: border-box;
+    
+    }
+.line view{
+    z-index: 999;
+    width: 56rpx;
+    height: 6rpx;
+    background: #ffc001;
+    /* display: inline-block; */
+    /* border-bottom: 6rpx solid #ffc001; */
 }
+.activis{
+ /* border-bottom:  6rpx solid #ffc001; */
+ color: #ffc001;
+ transition: all .3s ease-out .1s;
+ /* padding-bottom: 4rpx;  */
+}
+
+
+
+
+
 
 .main_right{
     width: 750rpx;
-    height: 100%;
+    /* height: 100%; */
     background: #f4f4f4;
-    padding:106rpx 0rpx 0rpx 0rpx 
+    padding:78rpx 0rpx 0rpx 0rpx 
 }
 .banner{
     width: 750rpx;
@@ -120,4 +147,66 @@
 ::-webkit-scrollbar {
   width: 0;
   height: 0;
+}
+
+
+.case{
+    width: 100%;
+    padding: 20rpx 30rpx;
+    box-sizing: border-box;
+}
+.case_main{
+    width: 100%;
+    height: 230rpx;
+    background: #fff;
+    border-radius: 6rpx;
+    box-shadow: 0rpx 8rpx  8rpx rgba(0, 0, 0, 0.3);
+    padding: 19rpx 42rpx 19rpx 19rpx;
+    box-sizing: border-box;
+    clear: both;
+    margin-bottom: 19rpx;
+}
+.case_img{
+    width: 192rpx;
+    height: 192rpx;
+    float: left;
+}
+.case_img image{
+    width: 100%;
+    height: 100%;
+    background: red;
+    border-radius: 6rpx;
+}
+.case_text{
+    float: right;
+    width:406rpx;
+    height: 192rpx 
+}
+.case_text text:first-child{
+    display: inline-block;
+    font-size: 30rpx;
+    color: rgb(51, 51, 51);
+    margin-bottom: 20rpx;
+    margin-left: 30rpx;
+    position: relative
+}
+.case_text text:first-child::before {
+				content: '';
+				position: absolute;
+				left: -30rpx;
+				top: 15rpx;
+				width: 15rpx;
+                height: 15rpx;
+                background: #ffc001;
+			}
+.case_text text:last-child{
+    display: inline-block;
+    font-size: 24rpx;
+    line-height:40rpx;
+    color: rgb(102, 102,102);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }

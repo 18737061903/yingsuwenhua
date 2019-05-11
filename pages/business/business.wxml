@@ -4,18 +4,19 @@
     <view class='main_text {{acindex==index?"acviewtiv":""}}' wx:for="{{text}}" wx:key bindtap='selcetCate' data-index='{{index}}' bindlongtap="longTap" data-id='{{item.id}}'>
      <text class='{{acindex==index?"activis":""}}' data-index='{{index}}'data-id='{{item.id}}'>{{item.name}}</text>
     </view>
+      <view class="line" style="width:7rpx;transform:translateY({{acindex*100}}%);"></view>
   </scroll-view>
-  <scroll-view scroll-y="true" class='main_right'>
+  <scroll-view scroll-y="true" class='main_right' bindscrolltolower="pullTolower">
     <view class='banner'>
       <image src='{{https+banner}}'></image>
     </view>
     <text class='main_right-text' wx:if="{{!isTitle}}">—— {{cateList[0].name}} ——</text>
     <view class='mincate' wx:if="{{isTitle}}">
-      <text wx:for="{{cateList}}" wx:key bindtap='minCate' data-index='{{index}}' bindlongtap="longTap" data-id='{{item.id}}'>{{item.name}}</text>
+      <text wx:for="{{cateList}}" wx:key bindtap='minCate' data-index='{{index}}' bindlongtap="longTap" data-id='{{item.id}}' class='{{cateListIndex==index?"activis":""}}'>{{item.name}}</text>
     </view>
     <view class='right_list'>
-        <view class='list' wx:for="{{articleList}}" wx:key bindtap='binNivo' data-id="{{item.id}}" bindlongtap='bindlongDtail'>
-         <view class='list_up'> <image src='{{https+item.img_url+thumbnail}}' mode='aspectFill' lazy-load data-id="{{item.id}}"></image></view>
+        <view class='list' wx:for="{{articleList}}" wx:key bindtap='binNivo' data-id="{{item.id}}" bindlongtap='bindlongDtail' data-index='{{index}}'>
+         <view class='list_up'> <image src='{{https+item.img_url+thumbnail}}' mode='aspectFill' lazy-load data-id="{{item.id}}" data-index='{{index}}'></image></view>
          <view class='list_dow' data-id="{{item.id}}">
           <text data-id="{{item.id}}">{{item.title}} {{item.min_desc}} </text>
           <text><text data-id="{{item.id}}">￥{{item.money}}/场次起</text><image src=''></image></text>

@@ -12,7 +12,11 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        wx.loadFontFace({
+            family: 'FangSong',
+            source: 'url("https://sungd.github.io/Pacifico.ttf")',
+            success: console.log
+        })
     },
 
     /**

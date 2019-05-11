@@ -83,6 +83,7 @@
 .caselist text{
  font-size: 28rpx;
 }
+
 .case{
     width: 100%;
     padding: 20rpx 30rpx;

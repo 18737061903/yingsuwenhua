@@ -8,9 +8,11 @@ Page({
      */
     data: {
         https: 'https://yingsuwenhua.oss-cn-shanghai.aliyuncs.com/',
-      id:'',
+        id:'',
       detailList:[],
         user: "",
+        imgs:[],//图片
+        page: 2,//下拉刷新
     },
 
     /**
@@ -35,22 +37,51 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+        //初始化请求页数
+        this.setData({
+            page: 2,//下拉刷新
+        })
+
         //请求
-        let that=this
-        sun.request({
-            url: "articles/detail",
-            data: {
-                id:that.data.id
-            },
-            success(res) {
-                
+        this.getDetail()
+    },
+   getDetail(page){
+       let that = this
+       sun.request({
+           url: "articles/detail",
+           showLoading: true,
+           data: {
+               id: that.data.id,
+               page: page ? page:1,//页数
+               row:3,//行数
+           },
+           success(res) {
+               wx.hideLoading()
+            if(page){
+                if (res.imgs) {
+                    let imgsList = that.data.imgs;
+                    let imgs = imgsList.concat(res.imgs);
+                    that.setData({
+                        imgs: imgs
+                    })
+                }else{
+                    wx.showToast({
+                        icon: "none",
+                        title: '已经到底啦！(`O′)',
+                    })
+                }
+            }else{
                 that.setData({
-                    detailList:res
+                    imgs: res.imgs
                 })
             }
-        })
-    },
-
+              
+               that.setData({
+                   detailList: res
+               })
+           }
+       })
+   },
     /**
      * 生命周期函数--监听页面隐藏
      */
@@ -76,7 +107,9 @@ Page({
      * 页面上拉触底事件的处理函数
      */
     onReachBottom: function () {
-
+           let page = this.data.page++
+            //请求
+            this.getDetail(page)
     },
 
     /**
@@ -84,6 +117,24 @@ Page({
      */
     onShareAppMessage: function () {
 
+    },
+    //预览图片
+    lookImg(e){
+        let that = this;
+        let url = this.data.https+e.target.dataset.url;
+        // console.log(url)
+        let imgs = this.data.imgs;
+        let imgsUrl=[]
+        imgs.forEach((item,index)=>{
+           imgsUrl.push(item.url)
+        })
+        // console.log(imgs)
+        let urls = imgsUrl.map(i => 'https://yingsuwenhua.oss-cn-shanghai.aliyuncs.com/' + i)
+        // console.log(urls)
+        wx.previewImage({
+            current: url , // 当前显示图片的http链接
+            urls: urls // 需要预览的图片http链接列表
+        })
     },
     //删除图片
     deleterImg(e){
@@ -112,6 +163,7 @@ Page({
                     }
                 })
             } else {
+                return
                 wx.showToast({
                     icon: "none",
                     title: '您没有权限编辑',
@@ -145,6 +197,7 @@ Page({
                     }
                 })
             } else {
+                return
                 wx.showToast({
                     icon: "none",
                     title: '您没有权限编辑',

@@ -303,6 +303,9 @@ Page({
                 wx.showToast({
                     title: '编辑文字信息提交成功',
                 })
+                wx.navigateBack({
+                    delta:1
+                })
             }
         })
         this.addvideoANDEimg()

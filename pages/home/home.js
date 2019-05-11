@@ -7,6 +7,7 @@ const name = require('../../utils/name.js')
 Page({
     data: {
         https: 'https://yingsuwenhua.oss-cn-shanghai.aliyuncs.com/',
+        thumbnail: '?x-oss-process=image/resize,m_fill,h_100,w_132',
         bannerList:[
         ],
         currentSwiper: 0,
@@ -34,6 +35,7 @@ Page({
         }
     },
     swiperChange: function (e) {
+        // console.log(e.detail.current)
         this.setData({
             currentSwiper: e.detail.current
         })
@@ -129,7 +131,7 @@ Page({
                 }else{
                     wx.showToast({
                         icon:"none",
-                        title: '没有数据啦',
+                        title: '已经到底啦！(`O′)',
                     })
                 }
                 
@@ -164,6 +166,7 @@ Page({
                     }
                 })
             } else {
+                return
                 wx.showToast({
                     icon: "none",
                     title: '您没有权限编辑',
@@ -196,7 +199,8 @@ Page({
                     }
                 })
             }else{
-                wx.showToast({
+                 return
+                 wx.showToast({
                     icon:"none",
                     title: '您没有权限编辑',
                 })
@@ -243,6 +247,7 @@ Page({
                         }
                     })
                 } else {
+                    return
                     wx.showToast({
                         icon: "none",
                         title: '您没有权限编辑',

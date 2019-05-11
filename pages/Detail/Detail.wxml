@@ -1,7 +1,7 @@
 <!--pages/Detail/Detail.wxml-->
 <view class='page'>
    <view class='toptext'><text>视频</text> <text bindtap='moreVideo'>查看更多</text> </view>
-   <view class='videos'><video src='{{https+detailList.firstVideoUrl}}' controls='true' loop="true" show-fullscreen-btn="true" object-fit='contain' poster="{{https+detailList.firstVideoUrl}}?spm=a2c4g.11186623.2.1.yjOb8V&x-oss-process=video/snapshot,t_7000,f_jpg,w_800,h_600,m_fast" bindlongtap='editDetail' data-id='{{detailList.id}}' data-cateid='{{detailList.cate_id}}'></video> </view>
+   <view class='videos'><video src='{{https+detailList.firstVideoUrl}}' autoplay="false" controls='true' loop="false" show-fullscreen-btn="true" object-fit='contain' poster="{{https+detailList.firstVideoUrl}}?spm=a2c4g.11186623.2.1.yjOb8V&x-oss-process=video/snapshot,t_7000,f_jpg,w_800,h_600,m_fast" bindlongtap='editDetail' data-id='{{detailList.id}}' data-cateid='{{detailList.cate_id}}'></video> </view>
    <view class='desc'>
      <text>{{detailList.desc}}</text>
      <text>{{detailList.min_desc}}</text>
@@ -10,8 +10,9 @@
    <view class='title'>
       <text>— 活动内容 —</text> 
     </view>
-    <view class='img' wx:for="{{detailList.imgs}}" wx:key bindlongtap='deleterImg' data-id='{{item.id}}'>
-      <image src='{{https+item.url}}' lazy-load data-id='{{item.id}}' mode='widthFix'></image>
+    <view class='img' wx:for="{{imgs}}" wx:key bindlongtap='deleterImg' data-id='{{item.id}}'>
+      <image src='{{https+item.url}}' lazy-load data-id='{{item.id}}' 
+      mode='widthFix' bindtap='lookImg' data-url='{{item.url}}'></image>
     </view>
     <view class='footer'>
       <!-- <view class='footer-child'>

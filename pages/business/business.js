@@ -2,6 +2,7 @@
 const app = getApp()
 const sun = require('../../utils/sun.js')
 const name = require('../../utils/name.js')
+// var page=2
 Page({
     /**
      * 页面的初始数据
@@ -15,10 +16,13 @@ Page({
       ],
       acindex:0,
     cateList:[],
+        cateListIndex:null,//二级选项active
         cateId: 0, //默认取第一个
         isTitle:false,
         articleList:[],
         user:"",
+        page:2,//下拉刷新
+        translateX:0,
     },
 
     /**
@@ -28,6 +32,9 @@ Page({
         this.setData({
             user: wx.getStorageSync("res")
         })
+        //初次加载数据
+       let that=this;
+       
     },
 
     /**
@@ -41,6 +48,11 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+        //初始化请求页数
+        this.setData({
+            page: 2,//下拉刷新
+        })
+
         if (app.globalData.id){
             this.setData({
                 cateId: app.globalData.id
@@ -72,8 +84,9 @@ Page({
             }
         })
         that.rightData()
+        console.log(this.data.cateListIndex)
     },
-    rightData(){
+    rightData(page){
         let that=this
         //右边列表
         sun.request({
@@ -82,16 +95,40 @@ Page({
             data: {
                 cateId: that.data.cateId,
                 type:1,
-                // page:1,////页码
-                // row:6////行数
+                page: page ? page:1,////页码
+                row:8////行数
             },
             success(res) {
+                wx.hideLoading()
+              if (page){
+                  if (res.articleList) {
+                      let list = that.data.articleList
+                      let arr = list.concat(res.articleList)
+                      that.setData({
+                          articleList: arr
+                      })
+                  } else {
+                      wx.showToast({
+                          icon: "none",
+                          title: '已经到底啦！(`O′)',
+                      })
+                  }
+              }else{
+                  if (res.articleList) {
+                    //   let list = that.data.articleList
+                    //   let arr = list.concat(res.articleList)
+                      that.setData({
+                          articleList: res.articleList
+                      })
+                  } else {
+                      wx.showToast({
+                          icon: "none",
+                          title: '已经到底啦！(`O′)',
+                      })
+                  }
+              }
+                
              
-                if (res.articleList){
-                    that.setData({
-                        articleList: res.articleList
-                    })
-                }
                 if (res.cateList){
                     that.setData({
                         cateList: res.cateList
@@ -109,6 +146,7 @@ Page({
                 
             }
         })
+
     },
 
     /**
@@ -129,14 +167,20 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function () {
-
+        console.log('e')
     },
 
     /**
      * 页面上拉触底事件的处理函数
      */
     onReachBottom: function () {
-
+     console.log('e')
+    },
+    //下拉触底
+    pullTolower(){
+       let page=this.data.page++
+       this.rightData(page)
+        console.log("s")
     },
 
     /**
@@ -145,15 +189,16 @@ Page({
     onShareAppMessage: function () {
 
     },
-    //选中分类
+    //一级选中分类
     selcetCate(e){
         let that=this
         let index = e.target.dataset.index;
         this.setData({
-            // articleList: [],//为空的情况下
+            articleList: [],//为空的情况下
             acindex:index,
             banner:this.data.text[index].banner,
-            cateId: this.data.text[index].id
+            cateId: this.data.text[index].id,
+            cateListIndex: null,
         })
         getApp().globalData.cateId = this.data.text[index].id
         that.rightData()
@@ -163,8 +208,12 @@ Page({
         let that=this;
         let index = e.target.dataset.index;
         this.setData({
-            cateId: this.data.cateList[index].id
+            articleList: [],//清空
+            page:2,
+            cateId: this.data.cateList[index].id,
+            cateListIndex:index,
         })
+       
         that.rightData()
     },
     //长按添加
@@ -185,6 +234,7 @@ Page({
                     }
                 })
             } else {
+                return
                 wx.showToast({
                     icon: "none",
                     title: '您没有权限编辑',
@@ -202,8 +252,9 @@ Page({
     },
     //删除详情
     bindlongDtail(e) {
+        // console.log(e.target.dataset.index)
+        console.log(this.data.articleList)
         let that = this;
-       
             if (this.data.user.isAuth == 1) {
                 wx.showModal({
                     title: '提示',
@@ -220,7 +271,11 @@ Page({
                                     wx.showToast({
                                         title: '删除成功',
                                     })
-                                    that.onShow()
+                                    let articleList = that.data.articleList
+                                     articleList.splice(e.target.dataset.index,1)
+                                    that.setData({
+                                        articleList:articleList
+                                    })
                                 }
                             })
                         } else if (res.cancel) {
@@ -229,6 +284,7 @@ Page({
                     }
                 })
             } else {
+                return
                 wx.showToast({
                     icon: "none",
                     title: '您没有权限编辑',
