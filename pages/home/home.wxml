@@ -25,7 +25,7 @@
   </view>
   <!-- 经典案例 -->
   <view class='caselist'>
-    <text>经典案例</text>
+    <text>产品展示</text>
   </view>
   <!-- list -->
   <view class='case'>

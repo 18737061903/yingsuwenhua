@@ -232,8 +232,6 @@ Page({
     },
     //确认提交
     butn(){
-
-      
         sun.request({
             url: "articles/add",
             data: {

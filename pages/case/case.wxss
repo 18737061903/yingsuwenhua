@@ -2,7 +2,7 @@
 .page{
     background: #f4f4f4;
     clear: both;
-    height: 100vh;
+    height: 100%;
 
 }
 .nav{
@@ -65,11 +65,11 @@
     width: 750rpx;
     /* height: 100%; */
     background: #f4f4f4;
-    padding:78rpx 0rpx 0rpx 0rpx 
+    /* padding:78rpx 0rpx 0rpx 0rpx  */
 }
 .banner{
     width: 750rpx;
-    height: 250rpx;
+    height: auto;
     margin: 0 auto;
 }
 .banner image{
@@ -80,10 +80,11 @@
 .main_right-text{
     width: 100%;
     display: inline-block;
-    height:97rpx;
+    height:60rpx;
     text-align: center;
-    line-height: 97rpx;
-    font-size: 36rpx;
+    line-height: 60rpx;
+    font-size: 32rpx;
+    color: #ffc001
 
 }
 .right_list{
@@ -154,17 +155,19 @@
     width: 100%;
     padding: 20rpx 30rpx;
     box-sizing: border-box;
+    height: 100%;
 }
 .case_main{
+    overflow: auto;
     width: 100%;
-    height: 230rpx;
     background: #fff;
     border-radius: 6rpx;
     box-shadow: 0rpx 8rpx  8rpx rgba(0, 0, 0, 0.3);
-    padding: 19rpx 42rpx 19rpx 19rpx;
+    padding: 20rpx 30rpx 20rpx 30rpx;
     box-sizing: border-box;
     clear: both;
-    margin-bottom: 19rpx;
+    margin-bottom: 30rpx;
+    /* border: 1rpx  */
 }
 .case_img{
     width: 192rpx;
@@ -209,4 +212,40 @@
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
+}
+.newtext{
+    font-size:35rpx;
+    font-weight:900;
+    color: #000; 
+     word-wrap:break-word ;
+     position: relative;
+     padding-left:30rpx; 
+     margin-bottom: 10rpx;
+}
+.newtext::before {
+				content: '';
+				position: absolute;
+				left: 0rpx;
+				top: 18rpx;
+				width: 15rpx;
+                height: 15rpx;
+                background: #ffc001;
+			}
+.newimg{
+    
+}
+.newimg text{
+    float: left;
+    font-size:28rpx;
+    color:#777;
+    word-wrap:break-word ;
+    width:530rpx;
+  
+}
+.newimg image{
+    float: right;
+     width: 100rpx;
+     height: 100rpx;
+     vertical-align: bottom;
+     border-radius: 5rpx;
 }

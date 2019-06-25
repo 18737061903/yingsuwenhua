@@ -18,7 +18,7 @@
 }
 /*用来包裹所有的小圆点  */
 .dots {
-  height: 40rpx;
+  height: 14rpx;
   display: flex;
   flex-direction: row;
   position: absolute;
@@ -29,7 +29,7 @@
 /*未选中时的小圆点样式 */
 .dot {
   width: 6rpx;
-  height: 30rpx;
+  height: 14rpx;
   border-radius: 20rpx;
   margin-right: 20rpx;
   background-color: #f4f4f4;
@@ -38,7 +38,7 @@
 /*选中以后的小圆点样式  */
 .active {
   width: 6rpx;
-  height: 30rpx;
+  height: 14rpx;
   border-radius: 20rpx;
   background-color: #cccccc;
   transform: rotate(25deg);
@@ -82,6 +82,7 @@
 }
 .caselist text{
  font-size: 28rpx;
+ color: #ffc001;
 }
 
 .case{

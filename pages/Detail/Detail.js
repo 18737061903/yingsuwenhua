@@ -24,6 +24,9 @@ Page({
             user: wx.getStorageSync("res")
         })  
 
+        //请求
+        this.getDetail()
+
     },
 
     /**
@@ -38,12 +41,11 @@ Page({
      */
     onShow: function () {
         //初始化请求页数
-        this.setData({
-            page: 2,//下拉刷新
-        })
+        // this.setData({
+        //     page: 2,//下拉刷新
+        // })
 
-        //请求
-        this.getDetail()
+  
     },
    getDetail(page){
        let that = this
@@ -205,5 +207,10 @@ Page({
             }
       
        
-    }
+    },
+    biandtell() {
+        wx.makePhoneCall({
+            phoneNumber: '13651868673'
+        })
+    },
 })

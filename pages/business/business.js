@@ -2,14 +2,14 @@
 const app = getApp()
 const sun = require('../../utils/sun.js')
 const name = require('../../utils/name.js')
-// var page=2
+// var page=2[]
 Page({
     /**
      * 页面的初始数据
      */
     data: {
         https: 'https://yingsuwenhua.oss-cn-shanghai.aliyuncs.com/',
-        thumbnail:'?x-oss-process=image/resize,m_fill,h_100,w_132',
+        thumbnail:'?x-oss-process=image/resize,m_fill,h_200,w_232',
       banner:'',//右边大图
       text:[
 
@@ -32,8 +32,10 @@ Page({
         this.setData({
             user: wx.getStorageSync("res")
         })
+
         //初次加载数据
-       let that=this;
+        let that = this;
+        that.rightData()
        
     },
 
@@ -49,23 +51,10 @@ Page({
      */
     onShow: function () {
         //初始化请求页数
-        this.setData({
-            page: 2,//下拉刷新
-        })
+        // this.setData({
+        //     page: 2,//下拉刷新
+        // })
 
-        if (app.globalData.id){
-            this.setData({
-                cateId: app.globalData.id
-            })
-            app.globalData.id=null
-            this.data.text.forEach((item,index)=>{
-                if(item.id==this.data.cateId){
-                    this.setData({
-                        acindex:index  
-                    })
-                }
-            })
-        }
         let that=this;
         //请求案例列表
         sun.request({
@@ -77,14 +66,37 @@ Page({
             },
             success(res) {
                 getApp().globalData.cateId =res[0].id
+                console.log(res,"resD")
              that.setData({
                  text:res,
                  banner: res[that.data.acindex].banner
              })
+                that.getlistIndex()
             }
-        })
-        that.rightData()
-        console.log(this.data.cateListIndex)
+        })  
+   
+    },
+    //首页进入 关联选中列表
+    getlistIndex(){
+        let that = this;
+        console.log(that.data.text)
+        if (app.globalData.id) {
+            this.setData({
+                cateId: app.globalData.id
+            })
+            that.data.cateId = app.globalData.id
+            this.data.text.forEach((item, index) => {
+                if (item.id == this.data.cateId) {
+                    this.setData({
+                        acindex: index
+                    })
+                }
+            })
+            app.globalData.id = null
+            //初次加载数据
+
+            that.rightData()
+        }
     },
     rightData(page){
         let that=this

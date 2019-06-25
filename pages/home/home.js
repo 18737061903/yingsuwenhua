@@ -7,7 +7,7 @@ const name = require('../../utils/name.js')
 Page({
     data: {
         https: 'https://yingsuwenhua.oss-cn-shanghai.aliyuncs.com/',
-        thumbnail: '?x-oss-process=image/resize,m_fill,h_100,w_132',
+        thumbnail: '?x-oss-process=image/resize,m_fill,h_200,w_232',
         bannerList:[
         ],
         currentSwiper: 0,
@@ -15,7 +15,7 @@ Page({
         caseList:[],
         user:"",
         data : {
-            page: 2,
+            page: 1,
             row: 3
         }
     },
@@ -66,18 +66,7 @@ Page({
             }
         })
         //请求案例列表
-        sun.request({
-            url: "index/indexCase",
-            data: {
-                page:1,
-                row:3
-            },
-            success(res) {
-                that.setData({
-                    caseList:res
-                })
-            }
-        })
+        this.pullData(this.data.data)
         
     },
   
@@ -106,8 +95,6 @@ Page({
      * 页面上拉触底事件的处理函数
      */
     onReachBottom: function () {
-     
-       
         this.pullData(this.data.data)
     },
     //下拉请求
@@ -123,10 +110,12 @@ Page({
             success(res) {
                 if(JSON.stringify(res)!="{}"){
                     that.data.data.page++
-                    console.log(that.data.data)
-                    that.data.caseList.push(res)
+                    let caseList = that.data.caseList
+                    let arr = caseList.concat(res)
+                    console.log(arr,"arr")
+                    console.log(res,"res")
                     that.setData({
-                        caseList: that.data.caseList
+                        caseList: arr
                     })
                 }else{
                     wx.showToast({

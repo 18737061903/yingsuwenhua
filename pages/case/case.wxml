@@ -1,6 +1,6 @@
 <!--pages/business/business.wxml-->
 <view class='page' >
-<scroll-view scroll-x class='nav' >
+<!-- <scroll-view scroll-x class='nav' >
       <view wx:for="{{text}}" class='navtext'wx:key bindtap='selcetCate'
       data-index='{{index}}' bindlongtap="longTap" data-id='{{item.id}}'>
          <text class='{{acindex==index?"activis":""}}' data-index='{{index}}' data-id='{{item.id}}'>{{item.name}}
@@ -9,12 +9,12 @@
        <view class="line" style="width:48px;transform:translateX({{acindex*100}}%);">
          <view></view>  
        </view>
-</scroll-view>
-  <view scroll-y="true" class='main_right' >
+</scroll-view> -->
+  <view  class='main_right' >
     <view class='banner' bindlongtap='addDetail' >
-       <image src='{{https+banner}}' ></image> <!-- mode="aspectFill" -->
+       <image src='../../img/img/timg1.png' mode="widthFix"></image> <!-- {{https+banner}} -->
     </view>
-    <text class='main_right-text' wx:if="{{!isTitle}}">—— 成功案例 ——</text>
+    <text class='main_right-text' wx:if="{{!isTitle}}">— 成功案例 —</text>
     <view class='mincate' wx:if="{{isTitle}}">
       <text wx:for="{{cateList}}" wx:key bindtap='minCate' data-index='{{index}}'>{{item.name}}</text>
     </view>
@@ -28,7 +28,7 @@
        </view>
     </view> -->
      <view class='case'>
-    <view class='case_main' wx:for="{{articleList}}" wx:key bindtap='binDetail' data-id='{{item.id}}' bindlongtap='bindlongDtail'>
+    <!-- <view class='case_main' wx:for="{{articleList}}" wx:key bindtap='binDetail' data-id='{{item.id}}' bindlongtap='bindlongDtail'>
       <view class='case_img' data-id='{{item.id}}'>
         <image src='{{https+item.img_url+thumbnail}}' data-id='{{item.id}}' mode="aspectFill"></image>
       </view> 
@@ -36,7 +36,15 @@
         <text data-id='{{item.id}}'>{{item.title}}</text>
         <text data-id='{{item.id}}'>{{item.desc}}</text>
       </view> 
-    </view>
+    </view> -->
+      <view class='case_main' wx:for="{{articleList}}" wx:key bindtap='binDetail' data-id='{{item.id}}' bindlongtap='bindlongDtail'>
+         <view class='newtext' data-id='{{item.id}}'>{{item.title}}</view>
+         <view class='newimg' data-id='{{item.id}}'>
+            <text data-id='{{item.id}}'>{{item.desc}}</text>
+            <image src='{{https+item.img_url+thumbnail}}' data-id='{{item.id}}' mode="aspectFill"></image>
+         </view>
+      </view>
+
   </view>
   
   </view>

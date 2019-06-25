@@ -1,14 +1,72 @@
 <!--pages/contact/contact.wxml-->
 <view class='page'>
+   
+   <view class='topimg'>
+       <image src='../../img/img/bg.png' mode='widthFix'></image>
+   </view>
+<view class='msgCompay'>
+   <view class='address ' >
+        <view class='address_left'>
+            <text>座机：</text> 
+            <text>021-66775677</text>
+        </view>
+        <view class='address_right' bindtap='biandtell'>
+            <image src='../../img/img/tells.png'></image>
+        </view> 
+   </view>
+
+   <view class='address'>
+        <view class='address_left'>
+            <text>邮箱：</text> 
+            <text>992569519@qq.com</text>
+        </view>
+        <view class='address_right'>
+            <image src='../../img/img/emails.png'></image>
+        </view> 
+   </view>
+
+    <view class='address'>
+        <view class='address_left'>
+            <text>地址：</text> 
+            <text>上海市普陀区真南路822弄129号301室（麦腾创业天地）</text>
+        </view>
+        <view class='address_right' bindtap='address'>
+            <image src='../../img/img/address.png'></image>
+        </view> 
+   </view>
+
+   <view class='address'>
+        <view class='address_left'>
+            <text>公司网址：</text> 
+            <text>http://www.shyingsuwh.com</text>
+        </view>
+        <view class='address_right'>
+            <image src='../../img/img/inneter.png'></image>
+        </view> 
+   </view>
+
+</view>
+ 
+<view class='footer'>
+  <view class='footertext'> <text>公司简介</text> </view>
+  <text class='footer_msg'>上海鹰苏文化传播有限公司，主要从事于企业第三方人力资源服务！常年活跃于全国各地，熟悉了解各区域情况。如：各大展馆；商圈；社区；机构招生；企业品宣等。可以为您的庆典活动、开业典礼及各类会务活动提供优质的服务。拥有上海区域比较知名的执行管理团队，均受过专业的管理培训训练。公司拥有丰富的第三方服务资源，有丰富的活动经验，专业的管理团队。可承接全国各类活动！</text>
+</view>
+   <view class='footerimg'>
+     <image src='../../img/img/erwiem.jpg'></image>
+   </view> 
+   <!-- <image class='image' src='../../img/img/bg.jpg'></image>
    <view class='text'>
-     <view>上海鹰苏文化传播有限公司，成立于2010年，由怀着共同信念的年轻精英份子组成，拥有上海区域知名的管理执行团队。是一家从事展会活动执行，广告设计，提供活动演绎需要的礼仪，模特，主持人等各种人力场地资源的文化传播公司。</view><view> 公司自成立以来，倡导积极的团队精神，凭借良好的协调能力，专业的行为操作规范，遵循“策划优良，服务到位，价格合理”的经营宗旨。公司合作成功案例数不胜数。和阿里巴巴，淘宝，联想，腾讯，海尔，雀巢，深度传媒等保持长期的合作，合作期间为客户提供全方位细致周到的服务，提供场地，搭建以及人力资源，赢得了客户的一致好评。</view> 
-    <view>  我们将秉承对客户认真负责的态度，遵从规范化的运作程序，针对不同客户成立专门的项目小组，做好项目实施前的各种准备工作。同时我们将发扬专业和热情的服务精神，以高效的执行力来保障方案和项目的顺利实施。在未来5年，我们坚信会与多国家内外知名企业成为长期合作伙伴，并完成卓有的成效！</view> 
+     <view> 
+</view>
    </view>
    <view class='contactText'>
-      <text>微信：13651868673</text>
-      <text>手机：13651868673</text>
       <text>座机：021-66775677</text>
       <text>邮箱：992569519@qq.com</text>
+      <text>公司网址：http://www.shyingsuwh.com</text>
       <text>地址：上海市普陀区真南路822弄129号301室（麦腾创业天地）</text>
    </view>
+   <view class='footerimg'>
+     <image src='../../img/img/erwiem.jpg'></image>
+   </view> -->
+
 </view>

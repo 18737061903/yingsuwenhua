@@ -8,7 +8,7 @@ Page({
      */
     data: {
         https: 'https://yingsuwenhua.oss-cn-shanghai.aliyuncs.com/',
-        thumbnail: '?x-oss-process=image/resize,m_fill,h_100,w_132',
+        thumbnail: '?x-oss-process=image/resize,m_fill,h_300,w_432',
         banner: '',//右边大图
         text: [
 
@@ -30,6 +30,8 @@ Page({
         this.setData({
             user: wx.getStorageSync("res")
         })
+        let that=this;
+     
     },
 
     /**
@@ -81,7 +83,7 @@ Page({
                 cateId: that.data.cateId,
                 type: 2,
                 page: page ? page : 1,////页码
-                row: 4////行数
+                row: 5////行数
             },
             success(res) {
                 wx.hideLoading()
@@ -151,13 +153,14 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function () {
-
+       console.log("a")
     },
 
     /**
      * 页面上拉触底事件的处理函数
      */
     onReachBottom: function () {
+        console.log("a")
         let page=this.data.page++
         this.rightData(page)
     },
@@ -214,10 +217,19 @@ Page({
                                     id: e.target.dataset.id,
                                 },
                                 success: function (res) {
+                                    let articleList = that.data.articleList;
+                                    articleList.forEach((item,index)=>{
+                                        if (item.id == e.target.dataset.id){
+                                            articleList.splice(index,1)
+                                        }
+                                    })
+                                    that.setData({
+                                        articleList: articleList
+                                    })
                                     wx.showToast({
                                         title: '删除成功',
                                     })
-                                    that.onShow()
+                                    // that.onShow()
                                 }
                             })
                         } else if (res.cancel) {
