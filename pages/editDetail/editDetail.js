@@ -28,7 +28,10 @@ Page({
         video: [],
         imgSort: '10',
         videoSort: '10',
-        cateId:''
+        cateId:'',
+        cateList:"",//一级分类
+        cateListName:"",//一级分类name
+        cateListId:'',//一级分类id
     },
     radioChange(e) {
         this.setData({
@@ -49,7 +52,10 @@ Page({
         this.setData({
             id: options.id,
             cateId:options.cateid
-        })  //请求详情
+        })  
+      //获取1级分类
+      this.getCase()
+        //请求详情
         let that = this
         sun.request({
             url: "articles/detail",
@@ -95,7 +101,30 @@ Page({
         // })
 
     },
+ //获取1级分类
+getCase(){
+      let that=this;
+      sun.request({
+        url: "index/index",
+        data: {
+          pid: 0
+        },
+        success(res) {
+            that.setData({
+                cateList: res.cateList
+            })
+        }
+      })
+},
+//一级分类
+bindPickerChange(e){
+  this.setData({
+    cateListName: this.data.cateList[e.detail.value].name,
+    cateListId: this.data.cateList[e.detail.value].id
+  })
 
+   
+},
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
@@ -202,22 +231,7 @@ Page({
             success: function (res) {
                 var tempFilePaths = res.tempFilePaths
                 that.uploadimg({ url: http, path: tempFilePaths})
-                // wx.uploadFile({
-                //     url: http, //仅为示例，非真实的接口地址
-                //     filePath: tempFilePaths[0],
-                //     name: 'file',
-                //     formData: {
-                //         sort: '1'
-                //     },
-                //     success: function (res) {
-                //         that.data.img.push(
-                //             { url: JSON.parse(res.data).data.imgUrl, sort: that.data.imgSort }
-                //         )
-                //         that.setData({
-                //             imgs: that.data.img
-                //         })
-                //     }
-                // })
+      
             }
         })
     },

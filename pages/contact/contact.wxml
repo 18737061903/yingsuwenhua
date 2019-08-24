@@ -25,7 +25,7 @@
         </view> 
    </view>
 
-    <view class='address'>
+    <view class='address' bindtap="getaddress">
         <view class='address_left'>
             <text>地址：</text> 
             <text>上海市普陀区真南路822弄129号301室（麦腾创业天地）</text>

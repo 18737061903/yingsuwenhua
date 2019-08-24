@@ -8,7 +8,9 @@ Page({
      */
     data: {
      flag:false,
-     https: 'https://www.yingsu.shop/',
+    //https: 'https://www.yingsu.shop/',
+      httpsIcon: 'https://yingsuwenhua.oss-cn-shanghai.aliyuncs.com/',
+      httpsBanner: 'https://yingsuwenhua.oss-cn-shanghai.aliyuncs.com/',
      img:'',
      multiArray:[],
      multiname:'空',
@@ -24,6 +26,8 @@ Page({
     caseImg:'',
     caseBanner:'',//banner,
     isflag:false,
+
+     cateList:"",//1级分类
     },
 
     /**
@@ -31,7 +35,8 @@ Page({
      */
     onLoad: function (options) {
         let that = this;
-        console.log(options.flag,"options.flag")
+        //获取1级分类
+      this.getCase(options.id)
             sun.request({
                 url: "cate/lst",
                 data: {
@@ -44,7 +49,32 @@ Page({
                 }
             })
     },
-
+//获取1级分类
+getCase(id){
+      let that=this;
+      sun.request({
+        url: "index/index",
+        data: {
+          pid: 0
+        },
+        success(res) {
+            let data = res.cateList
+            data.forEach((item,index)=>{
+                if(item.id==id){
+                  that.setData({
+                    cateList: item
+                  })      
+                }
+            })
+            that.setData({
+              caseInput:that.data.cateList.name,
+              caseImg: that.data.cateList.icon,
+              caseBanner: that.data.cateList.banner,
+              sort: that.data.cateList.sort
+            })
+        }
+      })
+},
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
@@ -96,10 +126,10 @@ Page({
     },//选泽父级分类
     bindPickerChange(e){
         let that=this;
-     this.setData({
-         multiname: this.data.multiArray[e.detail.value].name,
-         pid: this.data.multiArray[e.detail.value].id
-     })
+        this.setData({
+            multiname: this.data.multiArray[e.detail.value].name,
+            pid: this.data.multiArray[e.detail.value].id,
+        })
         if (this.data.pid != 0) {
             this.setData({
                 flag: true
@@ -144,7 +174,9 @@ Page({
                         //     { imgUrl: img, sort: that.data.sValue}
                         //     )
                         that.setData({
-                            caseImg: JSON.parse(res.data).data.imgUrl 
+                          httpsIcon: 'https://www.yingsu.shop/',
+                          caseImg: JSON.parse(res.data).data.imgUrl,
+                           
                         })
                     }
                 })
@@ -166,6 +198,7 @@ Page({
                     },
                     success: function (res) {
                         that.setData({
+                            httpsBanner: 'https://www.yingsu.shop/',
                             caseBanner: JSON.parse(res.data).data.imgUrl
                         })
                     }
@@ -189,7 +222,10 @@ Page({
                 pid: that.data.pid,
                 type: that.data.type,
                 name: that.data.caseInput,
-                sort: that.data.sort
+                sort: that.data.sort,
+                icon: that.data.caseImg,
+                banner: that.data.caseBanner,
+              
             },
             success(res) {
                 wx.showToast({
@@ -226,7 +262,7 @@ Page({
         sun.request({
             url: "Cate/add",
             data: {
-                pid:that.data.pid,
+                pid:that.data.pid,//没有父级为0  有父级就是id
                 type:that.data.type,
                 name: that.data.caseInput,
                 icon: that.data.caseImg,
@@ -234,11 +270,42 @@ Page({
                 sort: that.data.sort
             },
             success(res) {
-               wx.showToast({
-                   icon:"none",
-                   title: '成功',
-               })
+              wx.showToast({
+                icon: "none",
+                title: '成功',
+              })
+              wx.switchTab({
+                url: '../home/home',
+              })
+
             }
+        })
+    },
+    //保持编辑
+    keepEditor(){
+     
+      let that=this
+        sun.request({
+          url: "Cate/edit",
+          data: {
+            pid: that.data.pid,
+            id:that.data.cateList.id,
+            // type: that.data.type,
+            name: that.data.caseInput,
+            icon: that.data.caseImg,
+            banner: that.data.caseBanner,
+            sort: that.data.sort
+          },
+          success(res) {
+            wx.showToast({
+              icon: "none",
+              title: '成功',
+            })
+            wx.switchTab({
+              url: '../home/home',
+            })
+          
+          }
         })
     }
 })

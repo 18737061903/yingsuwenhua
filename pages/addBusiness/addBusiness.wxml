@@ -11,15 +11,16 @@
       是否显示成案例：{{caseName}}
     </view>
   </picker>
-   <text class='name'>请输入分类名称 </text><input class='nameInput' bindinput='caseInput'></input> 
+   <text class='name'>请输入分类名称 </text><input class='nameInput' bindinput='caseInput' value="{{caseInput}}"></input> 
    <text class='name' >请输入分类显示顺序(0-100)</text><input class='nameInput' value='{{sort}}' bindinput='caseSort'></input> 
-   <text class='imgtext' wx:if="{{!flag}}">请点击上传分类图标</text>
-   <text class='clickimg' bindtap='clickimg' wx:if="{{!flag}}">上传</text>
-   <image src='{{https+caseImg}}' class='img' wx:if="{{!flag}}"></image>
-   <text class='imgtext'wx:if="{{!flag}}">请点击上传分类banner</text>
-   <text class='clickimg' bindtap='caseBanner' wx:if="{{!flag}}">上传</text>
-   <image src='{{https+caseBanner}}' class='img' wx:if="{{!flag}}"></image>
+   <text class='imgtext' >请点击上传分类图标</text>
+   <text class='clickimg' bindtap='clickimg' >上传</text>
+   <image src='{{httpsIcon+caseImg}}' class='img' ></image>
+   <text class='imgtext'>请点击上传分类banner</text>
+   <text class='clickimg' bindtap='caseBanner' >上传</text>
+   <image src='{{httpsBanner+caseBanner}}' class='img'></image>
  </view>
- <button bindtap='butnTrue' wx:if="{{!flag}}">确定</button>
- <button bindtap='butnTruepid' wx:if="{{flag}}">确定</button>
+ <button bindtap='butnTrue' wx:if="{{!flag}}">新建确定</button>
+ <button bindtap='butnTruepid' wx:if="{{flag}}">新建>确定</button>
+ <button bindtap='keepEditor'>保存编辑</button>
 </view>

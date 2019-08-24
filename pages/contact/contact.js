@@ -75,5 +75,12 @@ Page({
         wx.chooseLocation({
             success(){},
             })
+    },
+    //获取地址
+    getaddress(){
+      // latitude: 31.2494, longitude: 121.397
+      wx.openLocation({
+        latitude: 31.286896725575872, longitude: 121.36075117532782
+      })
     }
 })

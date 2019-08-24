@@ -7,11 +7,13 @@
         "pages/wxlogin/wxlogin",
         "pages/addbanner/addbanner",
         "pages/addBusiness/addBusiness",
+        "pages/businessDetail/businessDetail",
         "pages/addDetail/addDetail",
         "pages/Detail/Detail",
         "pages/video/video",
         "pages/editDetail/editDetail",
         "pages/editClass/editClass",
+        "pages/EditClass/EditClass",
         "pages/addCaseDetail/addCaseDetail",
         "pages/chooseDeleter/chooseDeleter"
     ],
@@ -21,6 +23,11 @@
         "navigationBarTitleText": "鹰苏文化",
         "navigationBarTextStyle": "black"
     },
+      "permission": {
+        "scope.userLocation": {
+          "desc": "你的位置信息将用于小程序位置接口的效果展示"
+        }
+      },
     "tabBar": {
         "color": "#666",
         "selectedColor": "#ffc001",

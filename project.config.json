@@ -4,12 +4,13 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
-		"autoAudits": false
+		"autoAudits": false,
+		"checkInvalidKey": true
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.6.6",
@@ -39,7 +40,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 10,
+			"current": 11,
 			"list": [
 				{
 					"id": 0,
@@ -115,6 +116,13 @@
 					"id": -1,
 					"name": "case",
 					"pathName": "pages/case/case",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "aa",
+					"pathName": "pages/aa/aa",
 					"scene": null
 				}
 			]

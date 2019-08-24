@@ -60,8 +60,7 @@
  width: 134rpx;
  height: 190rpx;
  text-align: center;
- margin:20rpx 55rpx;
-
+ /* margin:20rpx 25rpx; */
 }
 .cate_child image{
   width: 134rpx;

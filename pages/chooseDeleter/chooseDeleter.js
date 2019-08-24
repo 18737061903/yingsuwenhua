@@ -94,6 +94,13 @@ Page({
         })
 
     },
+    //编辑该分类
+     editCategory(){
+        wx.navigateTo({
+          url: '../addDetail/addDetail?id=' + this.data.id,
+        })
+     },
+    //添加详情
     addbunnei() {
           wx.navigateTo({
               url: '../addDetail/addDetail?id=' + this.data.id,

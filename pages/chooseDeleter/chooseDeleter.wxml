@@ -1,4 +1,6 @@
 <!--pages/editClass/editClass.wxml-->
 <view class='page'>
-  <text bindtap='deleter'>删除</text> <text bindtap='addbunnei'>添加详情</text>
+  <text bindtap='deleter'>删除</text>
+  <text bindtap='editCategory'>编辑该分类</text>
+  <text bindtap='addbunnei'>添加详情</text>
 </view>

@@ -93,9 +93,16 @@ Page({
         })
      
     },
+    //编辑该分类
+  editCategory(){
+      // wx.navigateTo({
+      //   url: '../addBusiness/addBusiness?flag=' + this.data.flag,
+      // })
+  },
+    //添加分类
     addbunnei(){
         wx.navigateTo({
-            url: '../addBusiness/addBusiness?flag='+this.data.flag,
+            url: `../addBusiness/addBusiness?flag=${this.data.flag}&&id=${this.data.id}`,
         })
     }
 })

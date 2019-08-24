@@ -6,14 +6,14 @@
 
 }
 .main_left{
-    width: 130rpx;
+    width: 122rpx;
     background: #fff;
     float: left;
     height: 100vh;
     position: relative;
 }
 .main_text{
-    width: 130rpx;
+    width: 122rpx;
     height: 112rpx;
     text-align: center;
     line-height: 112rpx;
@@ -21,7 +21,7 @@
 }
 .main_text text{
     display: inline-block;
-    width: 130rpx;
+    width: 122rpx;
     height: 82rpx;
     font-size: 26rpx;
     text-align: center;
@@ -47,7 +47,7 @@
     transition: all 1s;
 }
 .main_right{
-    width: 620rpx;
+    width: 628rpx;
     height: 100%;
     float: right;
     background: #f4f4f4;

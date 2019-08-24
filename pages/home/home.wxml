@@ -17,7 +17,7 @@
   <!-- cate -->
   <view class='cate'>
     <view class='cate_main' >
-      <view class='cate_child' wx:for="{{cateList}}" wx:key bindlongtap="longTap" data-id='{{item.id}}' bindtap='navoBusiness'>
+      <view class='cate_child' style="{{cateList.length<=8?'margin:20rpx 25rpx':' margin:20rpx 55rpx;'}}" wx:for="{{cateList}}" wx:key bindlongtap="longTap" data-id='{{item.id}}' bindtap='navoBusiness'>
        <image src='{{https+item.icon}}' data-id='{{item.id}}'></image>
        <text data-id='{{item.id}}'>{{item.name}}</text>
       </view>
@@ -41,9 +41,3 @@
   </view>
 </view>
 
-<!-- <view>
-     <text>输入分类名称</text> <input bindinput="{{sValue}}" bindconfirm="enterCateValue"></input>
- </view>
-<button type='primary' bindtap='choose'>选择照片</button>
-<image wx:for="{{imgUrl}}" src='{{https+item}}'></image>
-<button bindtap='btntrue'>确定</button> -->

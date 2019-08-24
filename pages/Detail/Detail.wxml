@@ -27,5 +27,11 @@
        <view class='footer-child'>
         <image src='../../img/img/email.png'></image><text>邮箱:992569519@qq.com</text>
       </view>
+       <view class='footer-child' bindtap='biandtell'>
+        <image src='../../img/img/tell.png'></image><text>联系方式:13918556304</text>
+      </view>
+       <view class='footer-child'>
+        <image src='../../img/img/email.png'></image><text>邮箱:942300533@qq.com</text>
+      </view>
     </view>
 </view>
