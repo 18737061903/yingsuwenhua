@@ -37,11 +37,7 @@
     transition: all .3s ease-out .1s;
     border-left:  6rpx solid #ffc001;
     }
-.activis{
- /* border-left:  6rpx solid #ffc001; */
- transition: all .3s ease-out .1s;
- color: #ffc001;
-}
+
 .acviewtiv{
     background: #f4f4f4;
     transition: all 1s;
@@ -123,22 +119,26 @@
 }
 .mincate{
     width: 100%;
-    height: 50rpx;
-    margin-bottom: 20rpx
-}
-.mincate text:first-child{
-    margin-left:30rpx; 
-}
-.mincate text:last-child{
-    border: none 
+    padding: 20rpx 20rpx;
+    box-sizing: border-box;
+    display: flex;
+    justify-content:space-evenly;
+    flex-wrap: wrap;
+      color: #888;
 }
 .mincate text{
     display: inline-block;
-    padding: 0rpx 20rpx;
+    margin: 5rpx 0px;
+    padding: 3rpx 20rpx;
     text-align: center;
-    border-right:3rpx #888 solid; 
+    border-radius:10rpx; 
     font-size:26rpx; 
-   
+  
+    background:#fff;
+}
+.activis{
+ transition: all .3s ease-out .1s;
+ color: #ffc001;
 }
 /* 隐藏下啦条 */
 ::-webkit-scrollbar {

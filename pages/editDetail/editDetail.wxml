@@ -27,16 +27,16 @@ bindinput='money' value='{{money}}'></input></view>
       请选择—级分类：[{{cateListName}}]
     </view>
  </picker>
-<!-- <picker bindchange="bindPickerChange" value="{{index}}"  range="{{cateList}}" range-key="name">
+<picker bindchange="twoBindPickerChange" value="{{index}}"  range="{{twoCateList}}" range-key="name">
     <view class="picker" style="margin:10rpx 0rpx;color:red">
-      请选择二级分类：[{{cateListName}}]
+      请选择二级分类：[{{twoCateListName}}]
     </view>
  </picker>
- <picker bindchange="bindPickerChange" value="{{index}}"  range="{{cateList}}" range-key="name">
+ <picker bindchange="threeBindPickerChange" value="{{index}}"  range="{{threeCateList}}" range-key="name">
     <view class="picker" style="margin:10rpx 0rpx;color:red">
-      请选择三级分类：[{{cateListName}}]
+      请选择三级分类：[{{threeCateListName}}]
     </view>
- </picker> -->
+ </picker>
 
   <view>
     <text>请添加图片</text><text style='margin-left:20rpx;color:red' bindtap='chooseImg'>上传</text>

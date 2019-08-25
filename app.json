@@ -13,9 +13,9 @@
         "pages/video/video",
         "pages/editDetail/editDetail",
         "pages/editClass/editClass",
-        "pages/EditClass/EditClass",
         "pages/addCaseDetail/addCaseDetail",
-        "pages/chooseDeleter/chooseDeleter"
+        "pages/chooseDeleter/chooseDeleter",
+        "pages/collaborate/collaborate"
     ],
     "window": {
         "backgroundTextStyle": "light",
@@ -40,16 +40,16 @@
                 "selectedIconPath": "img/tabBar/sindex.png"
             },
             {
-                "pagePath": "pages/business/business",
-                "text": "业务",
-                "iconPath": "img/tabBar/business.png",
-                "selectedIconPath": "img/tabBar/sbusiness.png"
-            },
-            {
                 "pagePath": "pages/case/case",
                 "text": "案例",
                 "iconPath": "img/tabBar/case.png",
                 "selectedIconPath": "img/tabBar/scase.png"
+            },
+            {
+              "pagePath": "pages/collaborate/collaborate",
+              "text": "合作商家",
+              "iconPath": "img/tabBar/business.png",
+              "selectedIconPath": "img/tabBar/sbusiness.png"
             },
             {
                 "pagePath": "pages/contact/contact",

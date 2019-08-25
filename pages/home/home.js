@@ -169,9 +169,9 @@ Page({
     //跳入业务列表
     navoBusiness(e){
         app.globalData.id = e.target.dataset.id
-     wx.switchTab({
-         url: '../business/business',
-     })
+        wx.navigateTo({
+          url: '../business/business?id=' + e.target.dataset.id,
+        })
     },
    //编辑轮播图片
     binBanner(){

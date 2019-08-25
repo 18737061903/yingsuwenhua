@@ -14,6 +14,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+      console.log(options)
         this.setData({
             id: options.id,
             flag: options.flag
@@ -97,7 +98,7 @@ Page({
     //编辑该分类
      editCategory(){
         wx.navigateTo({
-          url: '../addDetail/addDetail?id=' + this.data.id,
+          url: '../editClass/editClass?id=' + this.data.id+"&&flag="+1,
         })
      },
     //添加详情

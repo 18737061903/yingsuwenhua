@@ -23,6 +23,7 @@ Page({
         user:"",
         page:2,//下拉刷新
         translateX:0,
+        threeList:"",//三级分类列表
     },
 
     /**
@@ -32,13 +33,49 @@ Page({
         this.setData({
             user: wx.getStorageSync("res")
         })
-
         //初次加载数据
         let that = this;
-        that.rightData()
+
+      //请求二级分类列表
+      sun.request({
+        url: "cate/lst",
+        showLoading: true,
+        data: {
+          pid: options.id,
+          type: 1,
+        },
+        success(res) {
+          getApp().globalData.cateId = res[0].id
+          that.setData({
+            cateId: res[0].id,
+            text: res,
+            banner: res[that.data.acindex].banner
+          })
+          that.getThreeList(res[0].id)//请求三类分类名
+        //   that.getlistIndex()
+          that.rightData()
+        }
+      })  
+      
        
     },
-
+    //请求三类分类
+     getThreeList(id){
+         let _this=this
+         sun.request({
+             url: "cate/lst",
+             showLoading: true,
+             data: {
+                 pid:id,
+                 type: 1,
+             },
+             success(res) {
+                _this.setData({
+                    threeList:res
+                })
+             }
+         })  
+     },
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
@@ -54,27 +91,6 @@ Page({
         // this.setData({
         //     page: 2,//下拉刷新
         // })
-
-        let that=this;
-        //请求案例列表
-        sun.request({
-            url: "cate/lst",
-            showLoading:true,
-            data: {
-                pid:0,
-                type: 1
-            },
-            success(res) {
-                getApp().globalData.cateId =res[0].id
-                console.log(res,"resD")
-             that.setData({
-                 text:res,
-                 banner: res[that.data.acindex].banner
-             })
-                that.getlistIndex()
-            }
-        })  
-   
     },
     //首页进入 关联选中列表
     getlistIndex(){
@@ -213,9 +229,10 @@ Page({
             cateListIndex: null,
         })
         getApp().globalData.cateId = this.data.text[index].id
+        that.getThreeList(this.data.text[index].id)//三级分类
         that.rightData()
     },
-    //二级分类赛选
+    //三级分类赛选
     minCate(e){
         let that=this;
         let index = e.target.dataset.index;

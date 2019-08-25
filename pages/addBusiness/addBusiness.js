@@ -28,12 +28,16 @@ Page({
     isflag:false,
 
      cateList:"",//1级分类
+     options:'',
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+      this.setData({
+        options: options
+      })
         let that = this;
         //获取1级分类
       this.getCase(options.id)
@@ -43,8 +47,12 @@ Page({
                     type: options.flag
                 },
                 success(res) {
+                    let arry=res
+                    arry.forEach((item,index)=>{
+                        item.name = item.lv + '级分类' + item.name
+                    })
                     that.setData({
-                        multiArray: res
+                        multiArray: arry
                     })
                 }
             })
@@ -53,28 +61,21 @@ Page({
 getCase(id){
       let that=this;
       sun.request({
-        url: "index/index",
+        url: "cate/getInfo",
         data: {
-          pid: 0
+         id: id
         },
         success(res) {
-            let data = res.cateList
-            data.forEach((item,index)=>{
-                if(item.id==id){
-                  that.setData({
-                    cateList: item
-                  })      
-                }
-            })
-            that.setData({
-              caseInput:that.data.cateList.name,
-              caseImg: that.data.cateList.icon,
-              caseBanner: that.data.cateList.banner,
-              sort: that.data.cateList.sort
-            })
+                that.setData({
+                  caseInput: res.name ? res.name:'',
+                  caseImg:res.icon ? res.icon:'',
+                  caseBanner: res.banner ? res.banner:'',
+                  sort: res.sort ? res.sort:""
+              })
         }
       })
 },
+
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
@@ -129,6 +130,10 @@ getCase(id){
         this.setData({
             multiname: this.data.multiArray[e.detail.value].name,
             pid: this.data.multiArray[e.detail.value].id,
+        })
+        that.setData({
+            caseImg:  '',
+            caseBanner: '',
         })
         if (this.data.pid != 0) {
             this.setData({
@@ -232,6 +237,9 @@ getCase(id){
                     icon: "none",
                     title: '成功',
                 })
+                wx.switchTab({
+                    url: '../home/home',
+                })
             }
         })
     },
@@ -283,13 +291,14 @@ getCase(id){
     },
     //保持编辑
     keepEditor(){
-     
+      console.log(this.data.options.id)
+  
       let that=this
         sun.request({
           url: "Cate/edit",
           data: {
             pid: that.data.pid,
-            id:that.data.cateList.id,
+            id: that.data.options.id,
             // type: that.data.type,
             name: that.data.caseInput,
             icon: that.data.caseImg,

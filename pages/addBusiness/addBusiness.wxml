@@ -13,6 +13,9 @@
   </picker>
    <text class='name'>请输入分类名称 </text><input class='nameInput' bindinput='caseInput' value="{{caseInput}}"></input> 
    <text class='name' >请输入分类显示顺序(0-100)</text><input class='nameInput' value='{{sort}}' bindinput='caseSort'></input> 
+<view>
+<text style="color:red;font-size:20rpx">*温馨提示分类图标和banner(要么传新的图。要么不传)</text>
+</view>
    <text class='imgtext' >请点击上传分类图标</text>
    <text class='clickimg' bindtap='clickimg' >上传</text>
    <image src='{{httpsIcon+caseImg}}' class='img' ></image>
@@ -20,7 +23,10 @@
    <text class='clickimg' bindtap='caseBanner' >上传</text>
    <image src='{{httpsBanner+caseBanner}}' class='img'></image>
  </view>
+
+ <text style="color:red;font-size:20rpx">*温馨提示添加时点击“新建确定”</text>
  <button bindtap='butnTrue' wx:if="{{!flag}}">新建确定</button>
  <button bindtap='butnTruepid' wx:if="{{flag}}">新建>确定</button>
+ <text style="color:red;font-size:20rpx">*温馨提示编辑时点击“保存编辑”</text>
  <button bindtap='keepEditor'>保存编辑</button>
 </view>

@@ -32,6 +32,12 @@ Page({
         cateList:"",//一级分类
         cateListName:"",//一级分类name
         cateListId:'',//一级分类id
+        twoCateList: "",//二级分类
+        twoCateListName: "",//二级分类name
+        twoCateListId: '',//二级分类id
+        threeCateList: "",//二级分类
+        threeCateListName: "",//二级分类name
+        threeCateListId: '',//二级分类id
     },
     radioChange(e) {
         this.setData({
@@ -118,13 +124,55 @@ getCase(){
 },
 //一级分类
 bindPickerChange(e){
+  let _this=this
   this.setData({
     cateListName: this.data.cateList[e.detail.value].name,
     cateListId: this.data.cateList[e.detail.value].id
   })
-
-   
+      sun.request({
+        url: "cate/lst",
+        showLoading: true,
+        data: {
+          pid: this.data.cateList[e.detail.value].id,
+          type: 1,
+        },
+        success(res) {
+          _this.setData({
+            twoCateList: res
+          })
+        }
+      })  
 },
+//二级分类
+  twoBindPickerChange(e){
+    let _this=this
+    this.setData({
+      twoCateListName: this.data. twoCateList[e.detail.value].name,
+      twoCateListId: this.data. twoCateList[e.detail.value].id
+    })
+      sun.request({
+        url: "cate/lst",
+        showLoading: true,
+        data: {
+          pid: this.data.twoCateList[e.detail.value].id,
+          type: 1,
+        },
+        success(res) {
+          _this.setData({
+            threeCateList: res
+          })
+        }
+      })  
+  },
+  //三级分类
+  threeBindPickerChange(e) {
+    let _this = this
+    this.setData({
+      threeCateListName: this.data.threeCateList[e.detail.value].name,
+      threeCateListId: this.data.threeCateList[e.detail.value].id,
+      cateId: this.data.threeCateList[e.detail.value].id
+    })
+  },
     /**
      * 生命周期函数--监听页面初次渲染完成
      */

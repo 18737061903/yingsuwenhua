@@ -10,10 +10,11 @@
     <view class='banner'>
       <image src='{{https+banner}}'></image>
     </view>
-    <text class='main_right-text' wx:if="{{!isTitle}}">— {{cateList[0].name}} —</text>
-    <view class='mincate' wx:if="{{isTitle}}">
-      <text wx:for="{{cateList}}" wx:key bindtap='minCate' data-index='{{index}}' bindlongtap="longTap" data-id='{{item.id}}' class='{{cateListIndex==index?"activis":""}}'>{{item.name}}</text>
+    <!-- <text class='main_right-text' wx:if="{{!isTitle}}">— {{cateList[0].name}} —</text> -->
+    <view class='mincate' >
+      <text wx:for="{{threeList}}" wx:key bindtap='minCate' data-index='{{index}}' bindlongtap="longTap" data-id='{{item.id}}' class='{{cateListIndex==index?"activis":""}}'>{{item.name}}</text>
     </view>
+
     <view class='right_list'>
         <view class='list' wx:for="{{articleList}}" wx:key bindtap='binNivo' data-id="{{item.id}}" bindlongtap='bindlongDtail' data-index='{{index}}'>
          <view class='list_up'> <image src='{{https+item.img_url+thumbnail}}' mode='aspectFill' lazy-load data-id="{{item.id}}" data-index='{{index}}'></image></view>
