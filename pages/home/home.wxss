@@ -2,7 +2,7 @@
 .page{
     background: #f4f4f4;
     padding-bottom: 120rpx;
-    
+   
 }
 .swiper_box {
   height: auto;

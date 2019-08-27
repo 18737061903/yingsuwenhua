@@ -117,29 +117,49 @@
     width: 20rpx;
     height: 5rpx;
 }
+/* ====================== */
 .mincate{
     width: 100%;
-    padding: 20rpx 20rpx;
+    padding: 20rpx 15rpx;
     box-sizing: border-box;
     display: flex;
-    justify-content:space-evenly;
+    justify-content:space-between;
     flex-wrap: wrap;
-      color: #888;
+    color: #888;
 }
 .mincate text{
     display: inline-block;
     margin: 5rpx 0px;
+    padding: 3rpx 15rpx;
+    text-align: center;
+    border-radius:10rpx; 
+    font-size:26rpx; 
+    background:#fff;
+}
+.mincate2{
+    width: 100%;
+    padding: 20rpx 20rpx;
+    box-sizing: border-box;
+    display: flex;
+    justify-content:space-between;
+    flex-wrap: wrap;
+    color: #888;
+}
+.mincate2 text{
+    display: inline-block;
+    margin: 5rpx 10px;
     padding: 3rpx 20rpx;
     text-align: center;
     border-radius:10rpx; 
     font-size:26rpx; 
-  
     background:#fff;
 }
+
 .activis{
  transition: all .3s ease-out .1s;
  color: #ffc001;
 }
+/* ====================== */
 /* 隐藏下啦条 */
 ::-webkit-scrollbar {
   width: 0;

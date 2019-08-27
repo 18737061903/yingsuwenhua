@@ -11,7 +11,7 @@
       <image src='{{https+banner}}'></image>
     </view>
     <!-- <text class='main_right-text' wx:if="{{!isTitle}}">— {{cateList[0].name}} —</text> -->
-    <view class='mincate' >
+    <view class='[{{threeList.length<=4? "mincate":""}},{{threeList.length<=6&threeList.length>4? "mincate2":""}},{{threeList.length<=8&threeList.length>6?"mincate":""}},{{threeList.length<=9&threeList.length>8? "mincate2":""}},{{threeList.length<=12&threeList.length>9? "mincate":""}}]' >
       <text wx:for="{{threeList}}" wx:key bindtap='minCate' data-index='{{index}}' bindlongtap="longTap" data-id='{{item.id}}' class='{{cateListIndex==index?"activis":""}}'>{{item.name}}</text>
     </view>
 

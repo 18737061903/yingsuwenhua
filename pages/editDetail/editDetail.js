@@ -148,7 +148,8 @@ bindPickerChange(e){
     let _this=this
     this.setData({
       twoCateListName: this.data. twoCateList[e.detail.value].name,
-      twoCateListId: this.data. twoCateList[e.detail.value].id
+      twoCateListId: this.data. twoCateList[e.detail.value].id,
+      cateId: this.data.twoCateList[e.detail.value].id,
     })
       sun.request({
         url: "cate/lst",

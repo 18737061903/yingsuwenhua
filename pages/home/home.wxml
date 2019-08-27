@@ -1,4 +1,7 @@
 <view class='page' scroll-y="true">
+  <!-- <view style=" position: fixed; left: 0px;top: 50%;opacity: 0.5">
+    <button open-type="contact">客服</button>
+  </view> -->
   <!-- banner -->
   <view class='swiper_box'>
     <swiper class='swipers' current="{{currentSwiper}}" interval='2000'   autoplay='true' bindanimationfinish="swiperChange" circular="true">
