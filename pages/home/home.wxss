@@ -4,6 +4,9 @@
     padding-bottom: 120rpx;
    
 }
+button::after {
+  border: none;
+}
 .swiper_box {
   height: auto;
   position: relative;

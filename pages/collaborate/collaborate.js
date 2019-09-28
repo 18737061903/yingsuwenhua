@@ -5,9 +5,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+      active: 0,
+      icon: {
+          normal: '../../img/tabBar/contact.png',
+          active: '../../img/tabBar/scontact.png'
+      }
   },
-
+    onChange(event) {
+        this.setData({
+            active: event.detail
+        })
+        console.log(event.detail)
+    },
   /**
    * 生命周期函数--监听页面加载
    */

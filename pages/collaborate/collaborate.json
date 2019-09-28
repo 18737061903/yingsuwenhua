@@ -1,3 +1,8 @@
 {
-  "usingComponents": {}
+ "usingComponents": {
+        "van-tabbar": "../../vant-app/tabbar/index",
+        "van-tabbar-item": "../../vant-app/tabbar-item/index",
+        "van-card": "../../vant-app/card/index",
+        "van-rate": "../../vant-app/rate/index"
+    }
 }

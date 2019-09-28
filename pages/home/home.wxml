@@ -1,7 +1,9 @@
 <view class='page' scroll-y="true">
-  <!-- <view style=" position: fixed; left: 0px;top: 50%;opacity: 0.5">
-    <button open-type="contact">客服</button>
-  </view> -->
+  <view style=" position: fixed; right: 0px;top: 87%;">
+    <button open-type="contact" style="border:none;width:30px;height:30px;background-color: #fff;border-radius:0;padding:0">
+    <image src="../../img/img/kefu.png" style="width:30px;height:30px"  ></image>
+    </button>
+  </view>
   <!-- banner -->
   <view class='swiper_box'>
     <swiper class='swipers' current="{{currentSwiper}}" interval='2000'   autoplay='true' bindanimationfinish="swiperChange" circular="true">

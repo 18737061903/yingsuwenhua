@@ -24,15 +24,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        this.setData({
-            user: wx.getStorageSync("res")
-        })
-        let user = wx.getStorageSync("res")
-        if (!user){
-            wx.navigateTo({
-                url: "../wxlogin/wxlogin",
-            })
-        }
+      
     },
     swiperChange: function (e) {
         // console.log(e.detail.current)
@@ -53,6 +45,12 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+        this.setData({
+            user: wx.getStorageSync("res")
+        })
+
+      
+      
         let that = this;
          //请求轮播以及分类
         sun.request({
@@ -138,6 +136,8 @@ Page({
     },
     /// 长按删除分类
     longTap: function (e) {
+      
+       
         let that=this;
         let id = e.target.dataset.id;
        
@@ -157,11 +157,14 @@ Page({
                     }
                 })
             } else {
+                //判断是否登陆了
+                if (!this.data.user) {
+                    wx.navigateTo({
+                        url: "../wxlogin/wxlogin",
+                    })
+                }
                 return
-                wx.showToast({
-                    icon: "none",
-                    title: '您没有权限编辑',
-                })
+                
             }
       
      
@@ -190,11 +193,14 @@ Page({
                     }
                 })
             }else{
+                //判断是否登陆了
+                if (!this.data.user) {
+                    wx.navigateTo({
+                        url: "../wxlogin/wxlogin",
+                    })
+                }
                  return
-                 wx.showToast({
-                    icon:"none",
-                    title: '您没有权限编辑',
-                })
+                 
             }
       
        
@@ -238,11 +244,14 @@ Page({
                         }
                     })
                 } else {
+                    //判断是否登陆了
+                    if (!this.data.user) {
+                        wx.navigateTo({
+                            url: "../wxlogin/wxlogin",
+                        })
+                    }
                     return
-                    wx.showToast({
-                        icon: "none",
-                        title: '您没有权限编辑',
-                    })
+                 
                 }
           
        

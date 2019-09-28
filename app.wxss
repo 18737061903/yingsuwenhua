@@ -9,5 +9,13 @@
   box-sizing: border-box;
 } 
 view{
-    color: #333
+   
 }
+
+/* 
+{
+    "pagePath": "pages/collaborate/collaborate",
+    "text": "合作商家",
+    "iconPath": "img/tabBar/business.png",
+    "selectedIconPath": "img/tabBar/sbusiness.png"
+}, */

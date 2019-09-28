@@ -1,2 +1,61 @@
 <!--pages/collaborate/collaborate.wxml-->
-<text>程序员正在努力中...</text>
+<van-tabbar active="{{ active }}" border='{{false}}' active-color="#ffc001"
+  inactive-color="#000"
+  bind:change="onChange"
+  fixed="{{false}}" >
+  <van-tabbar-item info="3" active-color="{{red}}"  inactive-color="#ffffff">
+    <image slot="icon" src="{{ icon.normal }}" mode="aspectFit"/>
+    <image slot="icon-active" src="{{ icon.active }}" mode="aspectFit"/>
+    美食
+  </van-tabbar-item>
+  <van-tabbar-item >
+     <image slot="icon" src="{{ icon.normal }}" mode="aspectFit"/>
+     <image slot="icon-active" src="{{ icon.active }}" mode="aspectFit"/>
+     教育
+  </van-tabbar-item>
+  <van-tabbar-item >
+     <image slot="icon" src="{{ icon.normal }}" mode="aspectFit"/>
+     <image slot="icon-active" src="{{ icon.active }}" mode="aspectFit"/>
+     休闲娱乐
+  </van-tabbar-item>
+  <van-tabbar-item >
+     <image slot="icon" src="{{ icon.normal }}" mode="aspectFit"/>
+     <image slot="icon-active" src="{{ icon.active }}" mode="aspectFit"/>
+     结婚摄影
+  </van-tabbar-item>
+</van-tabbar>
+
+
+<van-card
+  tag="标签"
+  title="商家名称"
+  desc="描述"
+  thumb="{{ icon.active }}"
+>
+<view slot="bottom">
+    <van-rate value="3" bind:change="onChange" />
+     <text>10元/人</text> 
+</view>
+<view slot="bottom">
+    <van-rate value="3" bind:change="onChange" />
+     <text>10元/人</text> 
+</view>
+
+<view slot="footer">
+    <van-button size="mini">按钮</van-button>
+    <van-button size="mini">按钮</van-button>
+  </view>
+</van-card>
+
+<van-card
+  tag="标签"
+  desc="描述信息"
+  title="商家名称"
+  thumb="{{ icon.active }}"
+>
+  <view slot="footer">
+    <van-button size="mini">按钮</van-button>
+    <van-button size="mini">按钮</van-button>
+  </view>
+</van-card>
+

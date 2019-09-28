@@ -45,12 +45,7 @@
                 "iconPath": "img/tabBar/case.png",
                 "selectedIconPath": "img/tabBar/scase.png"
             },
-            {
-              "pagePath": "pages/collaborate/collaborate",
-              "text": "合作商家",
-              "iconPath": "img/tabBar/business.png",
-              "selectedIconPath": "img/tabBar/sbusiness.png"
-            },
+            
             {
                 "pagePath": "pages/contact/contact",
                 "text": "联系我们",
